@@ -5,12 +5,7 @@ export const navbarData  = [
         label: 'Dashboard'
     },
     {
-        routeLink: 'products',
-        icon: 'fal fa-open',
-        label: 'Products'
-    },
-    {
-        routeLink: 'statistics',
+        routeLink: 'employe-master',
         icon: 'fal fa-chart-bar',
         label: 'Statistics'
     },
