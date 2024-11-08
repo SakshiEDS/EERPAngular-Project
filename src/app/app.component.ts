@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { EmployeDetailModalComponent } from './components/employe-detail-modal/employe-detail-modal.component';
 
 interface SideNavToggle {
   screenWidth: number;
@@ -8,7 +9,7 @@ interface SideNavToggle {
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'ERPMarket';

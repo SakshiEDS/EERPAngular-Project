@@ -1,0 +1,206 @@
+:host ::ng-deep {
+
+    .employee-master-container {
+        .p-dialog {
+            .p-dialog-header {
+                background: #1a4d80;
+                color: white;
+                padding: 0.5rem 1rem;
+            }
+
+            .p-dialog-content {
+                padding: 0;
+            }
+        }
+    }
+
+    .section-container {
+        margin-bottom: 1rem;
+
+        .section-header {
+            background: #1a4d80;
+            color: white;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+
+            i {
+                font-size: 1.2rem;
+            }
+        }
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        /* Two-column layout */
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+
+
+
+    .form-column-left {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .form-column-right {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .form-field {
+        display: flex;
+        justify-content: space-between;
+        /* Space between label and input */
+        align-items: center;
+        gap: 1rem;
+
+        label {
+            font-weight: bold;
+            text-align: left;
+            flex: 1;
+        }
+
+        input,
+        .p-dropdown,
+        .p-calendar {
+            flex: 2;
+            /* Allow the input to take more space */
+            width: 100%;
+            height: 30px;
+            /* Reduce height of input fields */
+            padding: 5px;
+            /* Reduce padding */
+        }
+
+        /* Reduce height of textareas */
+        textarea {
+            height: 30px;
+            /* Shorten the height of the textarea */
+            padding: 5px;
+            /* Reduce padding */
+        }
+    }
+
+    .photo-container {
+        text-align: center;
+        margin-bottom: 1rem;
+
+        img {
+            width: 150px;
+            height: 150px;
+            border: 1px solid #ddd;
+            margin-bottom: 0.5rem;
+        }
+    }
+
+    .address-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .action-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 1rem;
+        background: #f8f9fa;
+
+        .p-button {
+            min-width: 100px;
+        }
+    }
+
+    /* Style for the entire table */
+    /* Increase table row height and size */
+    .increased-row-size .p-datatable-thead th,
+    .increased-row-size .p-datatable-tbody td {
+        font-size: 16px;
+        /* Increase font size */
+        padding: 12px;
+        /* Increase padding to make the rows taller */
+        text-align: center;
+        /* Center text inside cells */
+        height: 50px;
+        /* Set a minimum height for rows */
+    }
+
+    /* Increase the size of input fields inside the table */
+    .increased-row-size .p-inputtext {
+        font-size: 16px;
+        /* Larger text inside inputs */
+        padding: 8px;
+        /* Increase padding inside input fields */
+        width: 100%;
+        /* Ensure inputs fill the cell width */
+    }
+
+    /* Optional: Increase the button size */
+    .add-lines-button button {
+        font-size: 16px;
+        /* Larger font size for buttons */
+        padding: 8px 16px;
+        /* Larger padding */
+    }
+
+    .checkbox-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .checkbox-container .p-checkbox {
+        margin: 0;
+    }
+
+    .compact-table .p-datatable .p-datatable-thead th,
+    .compact-table .p-datatable .p-datatable-tbody td {
+        padding: 4px 8px;
+        /* Reduce the padding for more compact cells */
+        font-size: 14px;
+        /* Smaller font size for compact text */
+        height: 30px;
+        /* Adjust row height */
+    }
+
+    /* Adjust the size of the input number in the table */
+    .compact-table .p-inputnumber {
+        font-size: 14px;
+        /* Smaller font size for input */
+        height: 30px;
+        /* Adjust the height of input fields */
+        width: 100%;
+        /* Ensure the input fills the cell width */
+    }
+
+    /* Optional: Adjust the button size inside input number */
+    .compact-table .p-inputnumber-button {
+        font-size: 12px;
+        /* Smaller button font size */
+    }
+
+    /* Control column width (Optional) */
+    .compact-table .p-datatable .p-datatable-thead th,
+    .compact-table .p-datatable .p-datatable-tbody td {
+        width: auto;
+        /* Adjust to content */
+        min-width: 100px;
+        /* Set a minimum width if needed */
+    }
+
+    /* Optional: If you want a fixed table layout (with consistent column widths) */
+    .compact-table .p-datatable {
+        table-layout: fixed;
+        /* Forces the columns to have a fixed width */
+    }
+
+
+}

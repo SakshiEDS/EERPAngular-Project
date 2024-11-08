@@ -1,0 +1,21 @@
+<div class="p-grid p-justify-center">
+    <div class="p-col-4">
+        <!-- Add p-messages component here to display success or error messages -->
+        <p-messages [(value)]="messages"></p-messages>
+
+        <!-- Login form -->
+        <form (ngSubmit)="onSubmit()">
+            <div class="p-field">
+                <label for="loginId">Login ID</label>
+                <input id="loginId" type="text" pInputText [(ngModel)]="loginId" name="loginId" required />
+            </div>
+
+            <div class="p-field">
+                <label for="userName">User Name</label>
+                <input id="userName" type="text" pInputText [(ngModel)]="userName" name="userName" required />
+            </div>
+
+            <button type="submit" pButton label="Login" icon="pi pi-sign-in"></button>
+        </form>
+    </div>
+</div>
