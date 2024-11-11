@@ -1,11 +1,68 @@
-<h1>employe-master works</h1>
-
 <div class="card">
-    <div class="card-head"> Employe Master  </div>
-
-        <div class="card-body">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem minus eaque quod obcaecati rem sed ipsa
-            aspernatur veritatis voluptate, ab excepturi error voluptatum officia dolorem possimus libero magni? Vero
-            dolore deserunt eligendi?
+    <!-- Header Section -->
+    <div class="flex justify-content-between align-items-center mb-3 bg-primary p-3">
+        <h2 class="text-white m-0">Employee Master</h2>
+        <div class="flex gap-2">
+            <button pButton icon="pi pi-sync" class="p-button-outlined p-button-light"></button>
+            <button pButton icon="pi pi-question-circle" class="p-button-outlined p-button-light" label="Help"></button>
         </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="flex justify-content-end mb-3 gap-2">
+        <button pButton icon="pi pi-print" label="Print" class="p-button-outlined"></button>
+        <button pButton icon="pi pi-trash" label="Bulk Delete" class="p-button-outlined"></button>
+        <button pButton icon="pi pi-plus" label="Create New Employee" class="p-button-outlined"></button>
+        <button pButton icon="pi pi-file-pdf" class="p-button-outlined"></button>
+        <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" placeholder="Search..." />
+        </span>
+    </div>
+
+    <!-- Data Table -->
+    <p-table [value]="employees" [tableStyle]="{ 'min-width': '50rem' }" [scrollable]="true"
+        styleClass="p-datatable-sm">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 5rem">SNo</th>
+                <th style="width: 8rem">Edit</th>
+                <th style="width: 8rem">Delete</th>
+                <th style="width: 4rem">
+                    <p-checkbox [binary]="true"></p-checkbox>
+                </th>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Department</th>
+                <th>Designation</th>
+                <th>Joining Date</th>
+                <th>Leaving Date</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-employee>
+            <tr>
+                <td>{{employee.sNo}}</td>
+                <td>
+                    <button pButton icon="pi pi-pencil" class="p-button-text p-button-primary"></button>
+                </td>
+                <td>
+                    <button pButton icon="pi pi-times" class="p-button-text p-button-danger"></button>
+                </td>
+                <td>
+                    <p-checkbox [binary]="true"></p-checkbox>
+                </td>
+                <td>{{employee.code}}</td>
+                <td>{{employee.name}}</td>
+                <td>{{employee.department}}</td>
+                <td>{{employee.designation}}</td>
+                <td>{{employee.joiningDate}}</td>
+                <td>{{employee.leavingDate}}</td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <tr>
+                <td colspan="10">Total Items: {{employees.length}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
 </div>

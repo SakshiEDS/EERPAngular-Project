@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { SelectItem } from 'primeng/api'; // For dropdown options
@@ -15,6 +15,25 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { TableModule } from 'primeng/table';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { CommonModule } from '@angular/common';
+import { ApiService } from '../../api.service';
+
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+// import { ApiService } from './api.service';
+import { HttpClient } from '@angular/common/http';
+import { EmployeeData } from './employe-detail-modal';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import Swal from 'sweetalert2';
+interface DateInfo {
+  year: number;
+  month: number;
+  day: number;
+  dayOfWeek?: number;
+}
+
+
+
 
 @Component({
   selector: 'app-employe-detail-modal',
@@ -32,12 +51,253 @@ import { CommonModule } from '@angular/common';
     CheckboxModule,
     TableModule,
     InputNumberModule,
-    CommonModule
-  ]
+    CommonModule,
+    ReactiveFormsModule,
+    ToastModule
+
+  ],
+  providers: [MessageService]
+
 })
-export class EmployeDetailModalComponent {
-  // Visibility of the modal dialog
+export class EmployeDetailModalComponent implements OnInit {
   visible: boolean = false;
+  employeeForm!: FormGroup;
+  employeeData: any;
+
+  displayEditDialog: boolean = false;
+  displayAdditionalDialog: boolean = false;
+  editEmpName: string = '';
+  editEmpCode: string = '';
+  additionalInfo: string = '';
+
+  showEditDialog() {
+    // Set initial values if needed
+    this.editEmpName = 'Current Employee Name'; // Replace with actual value
+    this.editEmpCode = 'Current Employee Code'; // Replace with actual value
+    this.displayEditDialog = true;
+  }
+
+  saveEmployeeDetails() {
+    // Save action for the main dialog
+    console.log("Name:", this.editEmpName);
+    console.log("Code:", this.editEmpCode);
+    this.displayEditDialog = false; // Close main dialog after saving
+  }
+
+  showAdditionalDialog() {
+    // Open the additional info dialog
+    this.displayAdditionalDialog = true;
+  }
+
+  saveAdditionalInfo() {
+    // Save action for the additional dialog
+    console.log("Additional Info:", this.additionalInfo);
+    this.displayAdditionalDialog = false; // Close additional dialog after saving
+  }
+
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private messageService: MessageService // Inject MessageService
+  ) { }
+
+  // constructor(private http: HttpClient, private messageService: MessageService) { }
+
+  ngOnInit(): void {
+    this.employeeForm = this.fb.group({
+      empDetail: this.fb.group({
+        sno: [0],
+        empCode: [],
+        empName: [''],
+        empImage: [''],
+        empFatherName: [''],
+        empMotherName: [''],
+        empMartialStatus: [''],
+        empSpouseName: [''],
+        empAnniversaryDate: [''],
+        empReligion: [''],
+        empDateOfBirth: [''],
+        empSex: [''],
+        empBloodGroup: [''],
+        empNationlity: [''],
+        empCardNo: [],
+        empEmergencyName: [''],
+        empEmergencyRelation: [''],
+        empEmergencyPhoneNo: [],
+        empEmergencyEmail: [''],
+        empLogin: [true],
+        empInTime: ['09:30:00'],
+        empOutTime: ['18:00:00'],
+        empReportingTo: [''],
+        empShift: [''],
+        empDesignation: [],
+        empDepartment: []
+      }),
+      empBankDetail: this.fb.group({
+        sno: [0],
+        empCode: [],
+        empBankCode: [],
+        empBankName: [''],
+        empBranch: [''],
+        empBankAccount: [],
+        empIfsccode: [''],
+        empAccountHolderName: ['']
+      }),
+      empAttachment: this.fb.group({
+        sno: [0],
+        empCode: [],
+        empAttachedNo: [''],
+        empAttachedDocumentName: [''],
+        empAttachedDocument: ['']
+      }),
+      empLeaveDetail: this.fb.group({
+        sno: [0],
+        empCode: [],
+        empLeavesType: [''],
+        empLeavesAllot: ['']
+      }),
+      empOfficialInformation: this.fb.group({
+        sno: [0],
+        empCode: [],
+        empCityType: [''],
+        empJoiningDate: [''],
+        empConfirmationDate: [''],
+        empProbationMonth: [],
+        empNoitceDays: [],
+        empSalaryWages: [''],
+        empPan: [''],
+        empUanno: [],
+        empVoterCardNo: [''],
+        empAadharCardNo: [],
+        empPassportNo: [''],
+        empPassportValidDate: [''],
+        empDlno: [''],
+        empDlvalidDate: ['']
+      }),
+      empPostingAttachment: this.fb.group({
+        sno: [0],
+        empCode: [],
+        empDepartmentCode: [],
+        empDesignationCode: [],
+        empDepartment: [''],
+        empDesignation: ['']
+      }),
+      empQualificationExperience: this.fb.group({
+        sno: [0],
+        empCode: [],
+        empQualification: [''],
+        empPassingYear: [],
+        empInstitute: [''],
+        empScore: [''],
+        empExpCompany: [''],
+        empExpDesignation: [''],
+        empExpPlace: [''],
+        empExpFromDate: [''],
+        empExpToDate: [''],
+        empExpYear: [],
+        empExpMonth: [],
+        empExpReasonLeaving: ['']
+      })
+    });
+
+  }
+
+  // ngOnInit(): void {
+  //   // Optionally, you can fetch data on component initialization
+  //   // this.getEmployeeData(55); // Call the method to fetch data for a specific employee
+  // }
+  // getEmployeeData(employeeId: number): void {
+  //   const url = `http://13.233.79.234/eERPapi/api/EmpDetails/${employeeId}`;
+
+  //   this.http.get(url).subscribe({
+  //     next: (response: any) => {
+  //       // Store the response in the employeeData variable
+  //       this.employeeData = response;
+  //       // Display success message using PrimeNG toast
+  //       this.messageService.add({
+  //         severity: 'success',
+  //         summary: 'Data Fetched',
+  //         detail: 'Employee data fetched successfully!',
+  //         life: 3000 // Display duration in milliseconds
+  //       });
+  //       console.log('Employee Data:', response); // Log the response in the console
+  //     },
+  //     error: (error) => {
+  //       // Show an error message if the API call fails
+  //       this.messageService.add({
+  //         severity: 'error',
+  //         summary: 'Error Fetching Data',
+  //         detail: 'An error occurred while fetching the employee data.',
+  //         life: 3000
+  //       });
+  //       console.error('Error fetching employee data:', error); // Log the error
+  //     }
+  //   });
+  // }
+
+  // populateForm(data: any): void {
+  //   // Populate the form with data from the API response
+  //   this.employeeForm.patchValue({
+  //     empDetail: {
+  //       sno: data.sno,
+  //       empCode: data.empCode,
+  //       empName: data.empName,
+  //       empImage: data.empImage,
+  //       empFatherName: data.empFatherName,
+  //       empMotherName: data.empMotherName,
+  //       empMartialStatus: data.empMartialStatus,
+  //       empSpouseName: data.empSpouseName,
+  //       empAnniversaryDate: data.empAnniversaryDate,
+  //       empReligion: data.empReligion,
+  //       empDateOfBirth: data.empDateOfBirth,
+  //       empSex: data.empSex,
+  //       empBloodGroup: data.empBloodGroup,
+  //       empNationlity: data.empNationlity,
+  //       empCardNo: data.empCardNo,
+  //       empEmergencyName: data.empEmergencyName,
+  //       empEmergencyRelation: data.empEmergencyRelation,
+  //       empEmergencyPhoneNo: data.empEmergencyPhoneNo,
+  //       empEmergencyEmail: data.empEmergencyEmail,
+  //       empLogin: data.empLogin,
+  //       empInTime: data.empInTime,
+  //       empOutTime: data.empOutTime,
+  //       empReportingTo: data.empReportingTo,
+  //       empShift: data.empShift,
+  //       empDesignation: data.empDesignation,
+  //       empDepartment: data.empDepartment
+  //     }
+  //   });
+  // }
+  onSubmit(): void {
+    const employeeData: EmployeeData = this.employeeForm.value;
+
+    this.http.post('https://localhost:7238/api/EmpDetails', employeeData).subscribe({
+      next: (response) => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Data posted successfully!',
+          life: 3000 // Display duration in milliseconds
+        });
+        console.log('Data posted successfully:', response);
+      },
+      error: (error) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'An error occurred while posting data.',
+          life: 3000
+        });
+        console.error('Error posting data:', error);
+      }
+    });
+
+
+  }
+
+
+  // Visibility of the modal dialog
+
   isBasicInfoCollapsed: boolean = false;
   isAddInfoCollapsed: boolean = false;
   isOffInfoCollapsed: boolean = false;

@@ -1,4 +1,4 @@
-export const navbarData  = [
+export const navbarData = [
     {
         routeLink: 'dashboard',
         icon: 'fal fa-home',
@@ -10,8 +10,13 @@ export const navbarData  = [
         label: 'Statistics'
     },
     {
-        routeLink: 'pages',
+        routeLink: 'employe-detail-modal',
         icon: 'fal fa-tags',
-        label: 'Dashboard'
+        label: 'employe-detail-modal'
+    },
+    {
+        routeLink: 'login',
+        icon: 'fal fa-tags',
+        label: 'login'
     }
 ]

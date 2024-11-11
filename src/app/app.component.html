@@ -1,2 +1,6 @@
 <!-- <button type="button" pButton label="PrimeNG"></button> -->
-<app-sidebar></app-sidebar>
+<app-side-nav (onToggleSideNav)="onToggleSideNav($event)"></app-side-nav>
+<app-body [collapsed]="isSideNavCollapsed" [screenWidth]="screenWidth"></app-body>
+<!-- <app-sidebar></app-sidebar> -->
+<!-- <app-employe-detail-modal></app-employe-detail-modal>
+<app-login></app-login> -->

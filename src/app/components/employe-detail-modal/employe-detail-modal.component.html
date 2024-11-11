@@ -1,726 +1,1027 @@
+<p-toast></p-toast>
 <div class="card flex justify-content-center">
-    <!-- Show Button -->
     <p-button (click)="showDialog()" label="Show"></p-button>
+    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+        <!-- Show Button -->
 
-    <!-- Employee Master Modal Dialog -->
-    <p-dialog header="Employee Master" [(visible)]="visible" [modal]="true"
-        [style]="{ width: '90vw', maxWidth: '1200px' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
-        [draggable]="false" [resizable]="false">
 
-        <!-- Employee Master Form Content -->
-        <div class="employee-master-container">
-            <!-- Basic Information Section -->
-            <div class="section-container" style="flex: 1;">
+        <!-- Employee Master Modal Dialog -->
+        <p-dialog header="Employee Master" [(visible)]="visible" [modal]="true"
+            [style]="{ width: '90vw', maxWidth: '1200px' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+            [draggable]="false" [resizable]="false">
 
-                <div class="section-header">
-                    <i class="pi pi-file"></i>
-                    <span>Basic Information</span>
-                    <i class="pi" [ngClass]="isBasicInfoCollapsed ? 'pi-chevron-down' : 'pi-chevron-up'"
-                        (click)="isBasicInfoCollapsed = !isBasicInfoCollapsed" style="cursor: pointer; float: right;">
-                    </i>
-                </div>
-                <div class="form-grid" *ngIf="!isBasicInfoCollapsed">
+            <!-- Employee Master Form Content -->
+            <div class="employee-master-container">
+                <!-- Basic Information Section -->
+                <div class="section-container" style="flex: 1;">
 
-                    <!-- Left Column (labels and input fields) -->
-                    <div class="form-column-left">
-                        <div class="form-field">
-                            <label>Name <span class="required">*</span></label>
-                            <input pInputText type="text" />
-                        </div>
-
-                        <div class="form-field">
-                            <label>Mapping Code</label>
-                            <input pInputText type="text" value="000002" readonly />
-                        </div>
-
-                        <div class="form-field">
-                            <label>Father Name</label>
-                            <input pInputText type="text" />
-                        </div>
-
-                        <div class="form-field">
-                            <label>Mother Name</label>
-                            <input pInputText type="text" />
-                        </div>
-
-                        <div class="form-field">
-                            <label>Marital Status</label>
-                            <p-dropdown [options]="maritalStatusOptions"
-                                [(ngModel)]="selectedMaritalStatus"></p-dropdown>
-                        </div>
-
-                        <div class="form-field">
-                            <label>Spouse Name</label>
-                            <input pInputText type="text" />
-                        </div>
-
-                        <div class="form-field">
-                            <label>Anniversary</label>
-                            <p-calendar></p-calendar>
-                        </div>
-
-                        <div class="form-field">
-                            <label>Religion</label>
-                            <input pInputText type="text" />
-                        </div>
-
-                        <div class="form-field">
-                            <label>DOB</label>
-                            <p-calendar></p-calendar>
-                        </div>
-
-                        <div class="form-field">
-                            <label>Sex</label>
-                            <p-dropdown [options]="sexOptions" [(ngModel)]="sexOptions"></p-dropdown>
-                        </div>
-
-                        <div class="form-field">
-                            <label>Blood Group</label>
-                            <p-dropdown [options]="bloodGroupOptions" [(ngModel)]="selectedBloodGroup"></p-dropdown>
-                        </div>
+                    <div class="section-header">
+                        <i class="pi pi-file"></i>
+                        <span>Basic Information</span>
+                        <i class="pi" [ngClass]="isBasicInfoCollapsed ? 'pi-chevron-down' : 'pi-chevron-up'"
+                            (click)="isBasicInfoCollapsed = !isBasicInfoCollapsed"
+                            style="cursor: pointer; float: right;">
+                        </i>
                     </div>
+                    <div class="form-grid" *ngIf="!isBasicInfoCollapsed" formGroupName="empDetail">
 
-                    <!-- Right Column (profile picture, nationality, card number) -->
-                    <div class="form-column-right">
-                        <div class="photo-container">
-                            <img src="assets/placeholder-photo.png" alt="Employee Photo" />
-                            <p-button label="Browse" styleClass="p-button-secondary"></p-button>
-                        </div>
-
-                        <div class="form-field">
-                            <label>Nationality</label>
-                            <input pInputText type="text" />
-                        </div>
-
-                        <div class="form-field">
-                            <label>Card No</label>
-                            <input pInputText type="text" value="000002" readonly />
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- Address Information Section -->
-            <div class="section-container">
-
-                <div class="section-header">
-                    <i class="pi pi-home"></i>
-                    <span>Address Information</span>
-                    <i class="pi" [ngClass]="isAddInfoCollapsed ? 'pi-chevron-down' : 'pi-chevron-up'"
-                        (click)="isAddInfoCollapsed = !isAddInfoCollapsed" style="cursor: pointer; float: right;">
-                    </i>
-                </div>
-                <div class="form-grid" *ngIf="!isAddInfoCollapsed">
-                    <!-- Left Column (Temporary Address) -->
-                    <div class="form-column-left">
-                        <h5>Temporary Address</h5>
-                        <div class="address-input-group">
+                        <!-- Left Column (labels and input fields) -->
+                        <div class="form-column-left">
                             <div class="form-field">
-                                <label>Address</label>
-                                <textarea pInputTextarea rows="5"></textarea>
+                                <label>SNO <span class="required">*</span></label>
+                                <input type="number" formControlName="sno" />
                             </div>
                             <div class="form-field">
-                                <label>Country</label>
-                                <p-dropdown [options]="countries" [(ngModel)]="countries"
-                                    [showClear]="true"></p-dropdown>
+                                <label>EmpCode <span class="required">*</span></label>
+                                <input type="number" formControlName="empCode" />
                             </div>
                             <div class="form-field">
-                                <label>State</label>
-                                <p-dropdown [options]="states" [(ngModel)]="states" [showClear]="true"></p-dropdown>
+                                <label>Name <span class="required">*</span></label>
+                                <input type="text" formControlName="empName" />
+                                <button pButton type="button" icon="pi pi-pencil" label="Edit"
+                                    (click)="showEditDialog()"></button>
                             </div>
-                            <div class="form-field">
-                                <label>City</label>
-                                <p-dropdown [options]="cities" [(ngModel)]="cities" [showClear]="true"></p-dropdown>
-                            </div>
-                            <div class="form-field">
-                                <label>Pin Code</label>
-                                <input type="text" pInputText />
-                            </div>
-                            <div class="form-field">
-                                <label>Phone</label>
-                                <input type="text" pInputText />
-                            </div>
-                            <div class="form-field">
-                                <label>Email</label>
-                                <input type="email" pInputText />
-                            </div>
-                            <div class="form-field">
-                                <label>Longitude</label>
-                                <input type="text" pInputText />
-                            </div>
-                            <div class="form-field">
-                                <label>Latitude</label>
-                                <input type="text" pInputText />
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Right Column (Permanent Address) -->
-                    <div class="form-column-right">
-                        <h5>Permanent Address
-                            <p-button label="CopyFromTemp" styleClass="p-button-primary"
-                                [style]="{'padding': '3px 5px', 'font-size': '12px'}"></p-button>
-                        </h5>
-
-
-
-                        <div class="address-input-group">
-                            <div class="form-field">
-                                <label>Address</label>
-                                <textarea pInputTextarea rows="5"></textarea>
-                            </div>
-                            <div class="form-field">
-                                <label>Country</label>
-                                <p-dropdown [options]="countries" [(ngModel)]="countries"
-                                    [showClear]="true"></p-dropdown>
-                            </div>
-                            <div class="form-field">
-                                <label>State</label>
-                                <p-dropdown [options]="states" [(ngModel)]="states" [showClear]="true"></p-dropdown>
-                            </div>
-                            <div class="form-field">
-                                <label>City</label>
-                                <p-dropdown [options]="cities" [(ngModel)]="cities" [showClear]="true"></p-dropdown>
-                            </div>
-                            <div class="form-field">
-                                <label>Pin Code</label>
-                                <input type="text" pInputText />
-                            </div>
-                            <div class="form-field">
-                                <label>Phone</label>
-                                <input type="text" pInputText />
-                            </div>
-                            <div class="form-field">
-                                <label>Email</label>
-                                <input type="email" pInputText />
-                            </div>
-                            <div class="form-field">
-                                <label>Longitude</label>
-                                <input type="text" pInputText />
-                            </div>
-                            <div class="form-field">
-                                <label>Latitude</label>
-                                <input type="text" pInputText />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="section-container">
-
-                <div class="section-header">
-                    <i class="pi pi-contact"></i>
-                    <span>Emergency Contact</span>
-                    <i class="pi" [ngClass]="isCollapsed ? 'pi-chevron-down' : 'pi-chevron-up'"
-                        (click)="isCollapsed = !isCollapsed" style="cursor: pointer; float: right;">
-                    </i>
-                </div>
-
-                <div class="form-grid" *ngIf="!isCollapsed">
-                    <div class="form-column-left">
-                        <div class="form-field">
-                            <label>Name <span class="required">*</span></label>
-                            <input pInputText type="text" />
-                        </div>
-                        <div class="form-field">
-                            <label>Relation</label>
-                            <input pInputText type="text" />
-                        </div>
-                        <div class="form-field">
-                            <label>Mobile No.</label>
-                            <input pInputText type="text" />
-                        </div>
-                    </div>
-
-                    <div class="form-column-right">
-                        <div class="form-field">
-                            <label>Phone</label>
-                            <input type="text" pInputText />
-                        </div>
-                        <div class="form-field">
-                            <label>Email</label>
-                            <input type="email" pInputText />
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section-container">
-
-                <div class="section-header">
-                    <i class="pi pi-home"></i>
-                    <span>Official Information</span>
-                    <i class="pi" [ngClass]="isOffInfoCollapsed ? 'pi-chevron-down' : 'pi-chevron-up'"
-                        (click)="isOffInfoCollapsed = !isOffInfoCollapsed" style="cursor: pointer; float: right;">
-                    </i>
-                </div>
-                <div class="form-grid" *ngIf="!isOffInfoCollapsed">
-                    <!-- Left Column (Temporary Address) -->
-                    <div class="form-column-left">
-
-                        <div class="form-field">
-                            <label>City Type <span class="required">*</span></label>
-                            <input pInputText type="text" />
-                        </div>
-                        <div class="form-field">
-                            <label>Joining Date <span class="required">*</span></label>
-                            <input pInputText type="text" />
-                        </div>
-
-                        <div class="form-field">
-                            <label>Confirmation Date</label>
-                            <input type="text" pInputText />
-                        </div>
-
-                        <div class="form-field">
-                            <label>Probabation Months</label>
-                            <input type="text" pInputText />
-                        </div>
-
-                        <div class="form-field">
-                            <label>Notice Days</label>
-                            <input type="text" pInputText />
-                        </div>
-
-                        <div class="form-field">
-                            <label>Salary/Wages</label>
-                            <input type="text" pInputText />
-                        </div>
-
-                        <div class="form-field">
-                            <label>Sourcing</label>
-                            <input type="text" pInputText />
-                        </div>
-
-                        <div class="form-field">
-                            <label>Skill Set</label>
-                            <input type="text" pInputText />
-                        </div>
-
-                        <div class="form-field">
-                            <label>Billing Item</label>
-                            <input type="text" pInputText />
-                        </div>
-
-                        <div class="form-field">
-                            <label>PAN</label>
-                            <input type="text" pInputText />
-                        </div>
-                    </div>
-
-
-                    <!-- Right Column (Permanent Address) -->
-                    <div class="form-column-right">
-
-
-
-
-
-                        <div class="form-field">
-                            <label>UAN No.</label>
-                            <input type="text" pInputText />
-                        </div>
-
-                        <div class="form-field">
-                            <label>Voter Card No.</label>
-                            <input type="text" pInputText />
-                        </div>
-
-                        <div class="form-field">
-                            <label>Civil Id No.</label>
-                            <input type="text" pInputText />
-                        </div>
-
-                        <div class="form-field">
-                            <label>Adhaar Card No.</label>
-                            <input type="text" pInputText />
-                        </div>
-                        <div class="form-field">
-                            <label>Pin Code</label>
-                            <input type="text" pInputText />
-                        </div>
-                        <div class="form-field">
-                            <label>Passport No.</label>
-                            <input type="text" pInputText />
-                        </div>
-                        <div class="form-field">
-                            <label>Passport Valid Upto</label>
-                            <input type="email" pInputText />
-                        </div>
-                        <div class="form-field">
-                            <label>Visa Valid Upto</label>
-                            <input type="text" pInputText />
-                        </div>
-                        <div class="form-field">
-                            <label>DI No.</label>
-                            <input type="text" pInputText />
-                        </div>
-
-                        <div class="form-field">
-                            <label>DL Valid Upto</label>
-                            <input type="text" pInputText />
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-            <div class="section-container">
-
-                <div class="section-header">
-                    <i class="pi pi-file"></i>
-                    <span>ESI PF</span>
-                    <i class="pi" [ngClass]="isEsiInfoCollapsed ? 'pi-chevron-down' : 'pi-chevron-up'"
-                        (click)="isEsiInfoCollapsed = !isEsiInfoCollapsed" style="cursor: pointer; float: right;">
-                    </i>
-                </div>
-                <div class="form-grid" *ngIf="!isEsiInfoCollapsed">
-                    <!-- Left Column (Temporary Address) -->
-                    <div class="form-column-left">
-
-
-                        <div class="form-field">
-                            <label>ESI Application</label>
-                            <p-checkbox [(ngModel)]="esiApplication" [binary]="true"></p-checkbox>
-                        </div>
-
-                        <div class="form-field">
-                            <label>PF Application</label>
-                            <p-checkbox [(ngModel)]="pfApplication" [binary]="true"></p-checkbox>
-                        </div>
-
-                        <div class="form-field">
-                            <label>Prof. Tax Applicable</label>
-                            <p-checkbox [(ngModel)]="profTaxApplicable" [binary]="true"></p-checkbox>
-                        </div>
-
-                        <div class="form-field">
-                            <label>LWF Applicable</label>
-                            <p-checkbox [(ngModel)]="lwfApplicable" [binary]="true"></p-checkbox>
-                        </div>
-
-                        <div class="form-field">
-                            <label>Overtime Applicable</label>
-                            <p-checkbox [(ngModel)]="overtimeApplicable" [binary]="true"></p-checkbox>
-                        </div>
-
-
-
-                    </div>
-                </div>
-
-
-            </div>
-            <div class="section-container">
-
-                <div class="section-header">
-                    <i class="pi pi-file"></i>
-                    <span>Bank Details</span>
-                    <i class="pi" [ngClass]="isBankInfoCollapsed ? 'pi-chevron-down' : 'pi-chevron-up'"
-                        (click)="isBankInfoCollapsed = !isBankInfoCollapsed" style="cursor: pointer; float: right;">
-                    </i>
-                </div>
-
-                <div class="form-grid" *ngIf="!isBankInfoCollapsed">
-                    <!-- Left Column (labels and input fields) -->
-                    <div class="form-column-left">
-                        <div class="form-field">
-                            <label>Bank <span class="required">*</span></label>
-                            <input pInputText type="text" />
-                        </div>
-                        <div class="form-field">
-                            <label>Branch</label>
-                            <input pInputText type="text" />
-                        </div>
-
-                        <div class="form-field">
-                            <label>Bank Account No.</label>
-                            <input pInputText type="text" />
-                        </div>
-
-                    </div>
-
-                    <!-- Right Column (Permanent Address) -->
-                    <div class="form-column-right">
-
-
-
-
-
-
-
-
-                        <div class="form-field">
-                            <label>Swift/IFSC Code</label>
-                            <input type="text" pInputText />
-                        </div>
-                        <div class="form-field">
-                            <label>A/C Holder Name</label>
-                            <input type="text" pInputText />
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-            <div class="section-container">
-                <div class="section-header">
-                    <i class="pi pi-file"></i>
-                    <span>Qualification</span>
-
-                    <!-- Collapsible Icon for Qualification Section -->
-                    <i class="pi" [ngClass]="isQualificationCollapsed ? 'pi-chevron-down' : 'pi-chevron-up'"
-                        (click)="isQualificationCollapsed = !isQualificationCollapsed"
-                        style="cursor: pointer; float: right;">
-                    </i>
-                </div>
-
-                <!-- Collapsible Content for Qualification Section -->
-                <div *ngIf="!isQualificationCollapsed">
-                    <p-table [value]="qualificationData" [paginator]="true" [rows]="5"
-                        styleClass="p-datatable-striped increased-row-size">
-                        <ng-template pTemplate="header">
-                            <tr>
-                                <th>Degree</th>
-                                <th>Passing Year</th>
-                                <th>Institute/Board/University</th>
-                                <th>Score</th>
-                            </tr>
-                        </ng-template>
-
-                        <ng-template pTemplate="body" let-qualification let-i="rowIndex">
-                            <tr>
-                                <td><input pInputText [(ngModel)]="qualification.degree" placeholder="Degree" /></td>
-                                <td><input pInputText [(ngModel)]="qualification.passingYear"
-                                        placeholder="Passing Year" /></td>
-                                <td><input pInputText [(ngModel)]="qualification.institute"
-                                        placeholder="Institute/Board/University" /></td>
-                                <td><input pInputText [(ngModel)]="qualification.score" placeholder="Score" /></td>
-                            </tr>
-                        </ng-template>
-                    </p-table>
-
-                    <div class="add-lines-button">
-                        <button pButton type="button" icon="pi pi-plus" label="Add Lines"
-                            (click)="addQualificationRow()"></button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section-container">
-                <div class="section-header">
-                    <i class="pi pi-file"></i>
-                    <span>Experience</span>
-
-                    <!-- Collapsible Icon for Experience Section -->
-                    <i class="pi" [ngClass]="isExperienceCollapsed ? 'pi-chevron-down' : 'pi-chevron-up'"
-                        (click)="isExperienceCollapsed = !isExperienceCollapsed" style="cursor: pointer; float: right;">
-                    </i>
-                </div>
-
-                <!-- Collapsible Content for Experience Section -->
-                <div *ngIf="!isExperienceCollapsed">
-                    <p-table [value]="experienceData" [paginator]="true" [rows]="5"
-                        styleClass="p-datatable-striped increased-row-size">
-
-                        <!-- Table Header -->
-                        <ng-template pTemplate="header">
-                            <tr>
-                                <th>Company Name</th>
-                                <th>Designation</th>
-                                <th>Place</th>
-                                <th>From Date</th>
-                                <th>To Date</th>
-                                <th>Year</th>
-                                <th>Month</th>
-                                <th>Reason For Leaving</th>
-                            </tr>
-                        </ng-template>
-
-                        <!-- Table Body with Input Fields -->
-                        <ng-template pTemplate="body" let-experience let-i="rowIndex">
-                            <tr>
-                                <td><input pInputText [(ngModel)]="experience.companyName" placeholder="Company Name" />
-                                </td>
-                                <td><input pInputText [(ngModel)]="experience.designation" placeholder="Designation" />
-                                </td>
-                                <td><input pInputText [(ngModel)]="experience.place" placeholder="Place" /></td>
-                                <td><input pInputText [(ngModel)]="experience.fromDate" placeholder="From Date"
-                                        type="date" /></td>
-                                <td><input pInputText [(ngModel)]="experience.toDate" placeholder="To Date"
-                                        type="date" /></td>
-                                <td><input pInputText [(ngModel)]="experience.year" placeholder="Year" type="number" />
-                                </td>
-                                <td><input pInputText [(ngModel)]="experience.month" placeholder="Month"
-                                        type="number" /></td>
-                                <td><input pInputText [(ngModel)]="experience.reasonForLeaving"
-                                        placeholder="Reason For Leaving" /></td>
-                            </tr>
-                        </ng-template>
-                    </p-table>
-
-                    <!-- Add Row Button -->
-                    <div class="add-lines-button">
-                        <button pButton type="button" icon="pi pi-plus" label="Add Lines"
-                            (click)="addExperienceRow()"></button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section-container">
-                <div class="section-header">
-                    <i class="pi pi-clock"></i>
-                    <span>Leave Policy</span>
-
-                    <!-- Collapsible Icon for Leave Policy Section -->
-                    <i class="pi" [ngClass]="isLeavePolicyCollapsed ? 'pi-chevron-down' : 'pi-chevron-up'"
-                        (click)="isLeavePolicyCollapsed = !isLeavePolicyCollapsed"
-                        style="cursor: pointer; float: right;">
-                    </i>
-                </div>
-
-                <!-- Collapsible Content for Leave Policy Section -->
-                <div *ngIf="!isLeavePolicyCollapsed">
-                    <p-table [value]="leaveData" [paginator]="true" [rows]="5" styleClass="p-datatable-striped">
-                        <ng-template pTemplate="header">
-                            <tr>
-                                <th>Leave</th>
-                                <th class="checkbox-container">Applicable</th>
-                            </tr>
-                        </ng-template>
-
-                        <ng-template pTemplate="body" let-leave>
-                            <tr>
-                                <td>{{ leave.name }}</td>
-                                <td>
-                                    <div class="checkbox-container">
-                                        <p-checkbox [(ngModel)]="leave.applicable" [binary]="true"></p-checkbox>
+                            <!-- Main Edit Dialog -->
+                            <p-dialog header="Edit Employee Details" [(visible)]="displayEditDialog" [modal]="true"
+                                [closable]="true" [style]="{width: '400px'}">
+                                <div class="p-fluid">
+                                    <div class="p-field">
+                                        <label for="empName">Name</label>
+                                        <input id="empName" type="text" pInputText [(ngModel)]="editEmpName">
                                     </div>
-                                </td>
-                            </tr>
-                        </ng-template>
-                    </p-table>
-                </div>
-            </div>
+                                    <div class="p-field">
+                                        <label for="empCode">Code</label>
+                                        <input id="empCode" type="text" pInputText [(ngModel)]="editEmpCode">
+                                    </div>
+                                    <!-- Plus icon button to open nested modal -->
+                                    <button pButton type="button" icon="pi pi-plus" (click)="showAdditionalDialog()"
+                                        label="Add More"></button>
 
-            <div class="section-container">
-                <div class="section-header">
-                    <i class="pi pi-money-bill"></i>
-                    <span>Salary Structure</span>
+                                    <p-footer>
+                                        <button pButton label="Save" icon="pi pi-check"
+                                            (click)="saveEmployeeDetails()"></button>
+                                        <button pButton label="Cancel" icon="pi pi-times" class="p-button-secondary"
+                                            (click)="displayEditDialog=false"></button>
+                                    </p-footer>
+                                </div>
+                            </p-dialog>
 
-                    <!-- Collapsible Icon for Salary Structure Section -->
-                    <i class="pi" [ngClass]="isSalaryStructureCollapsed ? 'pi-chevron-down' : 'pi-chevron-up'"
-                        (click)="isSalaryStructureCollapsed = !isSalaryStructureCollapsed"
-                        style="cursor: pointer; float: right;">
-                    </i>
-                </div>
-
-                <!-- Collapsible Content for Salary Structure Section -->
-                <div *ngIf="!isSalaryStructureCollapsed">
-                    <p-table [value]="salaryData" [paginator]="true" [rows]="5"
-                        styleClass="p-datatable-striped compact-table">
-                        <ng-template pTemplate="header">
-                            <tr>
-                                <th>Description</th>
-                                <th>Alias</th>
-                                <th>Amount</th>
-                            </tr>
-                        </ng-template>
-
-                        <ng-template pTemplate="body" let-salary>
-                            <tr>
-                                <td>{{ salary.description }}</td>
-                                <td>{{ salary.alias }}</td>
-                                <td>
-                                    <p-inputNumber [(ngModel)]="salary.amount" [showButtons]="true" [min]="0"
-                                        [max]="999999" mode="decimal" [useGrouping]="true"></p-inputNumber>
-                                </td>
-                            </tr>
-                        </ng-template>
-                    </p-table>
-                </div>
-            </div>
+                            <!-- Additional Nested Dialog -->
+                            <p-dialog header="Additional Information" [(visible)]="displayAdditionalDialog"
+                                [modal]="true" [closable]="true" [style]="{width: '300px'}">
+                                <div class="p-fluid">
+                                    <div class="p-field">
+                                        <label for="additionalInfo">Additional Info</label>
+                                        <input id="additionalInfo" type="text" pInputText [(ngModel)]="additionalInfo">
+                                    </div>
+                                    <p-footer>
+                                        <button pButton label="Save" icon="pi pi-check"
+                                            (click)="saveAdditionalInfo()"></button>
+                                        <button pButton label="Cancel" icon="pi pi-times" class="p-button-secondary"
+                                            (click)="displayAdditionalDialog=false"></button>
+                                    </p-footer>
+                                </div>
+                            </p-dialog>
 
 
-            <div class="section-container">
+                            <div class="form-field">
+                                <label>Image <span class="required">*</span></label>
+                                <input type="text" formControlName="empImage" />
+                            </div>
 
-                <div class="section-header">
-                    <i class="pi pi-file"></i>
-                    <span>Posting and Custom Fields</span>
-                    <i class="pi" [ngClass]="isPostInfoCollapsed ? 'pi-chevron-down' : 'pi-chevron-up'"
-                        (click)="isPostInfoCollapsed = !isPostInfoCollapsed" style="cursor: pointer; float: right;">
-                    </i>
-                </div>
+                            <div class="form-field">
+                                <label>Father Name</label>
+                                <input type="text" formControlName="empFatherName" />
+                            </div>
 
-                <div class="form-grid" *ngIf="!isPostInfoCollapsed">
-                    <!-- Left Column (labels and input fields) -->
-                    <div class="form-column-left">
-                        <div class="form-field">
-                            <label>Effective From<span class="required">*</span></label>
-                            <input pInputText type="date" />
+                            <div class="form-field">
+                                <label>Mother Name</label>
+                                <input type="text" formControlName="empMotherName" />
+                            </div>
+
+                            <div class="form-field">
+                                <label>Marital Status</label>
+                                <input type="text" formControlName="empMartialStatus" />
+                            </div>
+
+                            <div class="form-field">
+                                <label>Spouse Name</label>
+                                <input type="text" formControlName="empSpouseName" />
+                            </div>
+
+                            <div class="form-field">
+                                <label>Anniversary</label>
+                                <input type="date" formControlName="empAnniversaryDate" />
+                            </div>
+
+                            <div class="form-field">
+                                <label>Religion</label>
+                                <input type="text" formControlName="empReligion" />
+                            </div>
+
+                            <div class="form-field">
+                                <label>DOB</label>
+                                <input type="date" formControlName="empDateOfBirth" />
+                            </div>
+
+                            <div class="form-field">
+                                <label>Sex</label>
+                                <input type="text" formControlName="empSex" />
+                            </div>
+
+                            <div class="form-field">
+                                <label>Blood Group</label>
+                                <input type="text" formControlName="empBloodGroup" />
+                            </div>
                         </div>
-                        <div class="form-field">
-                            <label>Department<span class="required">*</span></label>
-                            <input pInputText type="text" />
+
+                        <!-- Right Column (profile picture, nationality, card number) -->
+                        <div class="form-column-right">
+                            <div class="photo-container">
+                                <img src="assets/placeholder-photo.png" alt="Employee Photo" />
+                                <p-button label="Browse" styleClass="p-button-secondary"></p-button>
+                            </div>
+
+                            <div class="form-field">
+                                <label>Nationality</label>
+                                <input type="text" formControlName="empNationlity" />
+                            </div>
+
+                            <div class="form-field">
+                                <label>Card No</label>
+                                <input type="number" formControlName="empCardNo" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Address Information Section -->
+                <div class="section-container">
+
+                    <div class="section-header">
+                        <i class="pi pi-home"></i>
+                        <span>Address Information</span>
+                        <i class="pi" [ngClass]="isAddInfoCollapsed ? 'pi-chevron-down' : 'pi-chevron-up'"
+                            (click)="isAddInfoCollapsed = !isAddInfoCollapsed" style="cursor: pointer; float: right;">
+                        </i>
+                    </div>
+                    <div class="form-grid" *ngIf="!isAddInfoCollapsed">
+                        <!-- Left Column (Temporary Address) -->
+                        <div class="form-column-left">
+                            <h5>Temporary Address</h5>
+                            <div class="address-input-group">
+                                <div class="form-field">
+                                    <label>Address</label>
+                                    <textarea pInputTextarea rows="5"></textarea>
+                                </div>
+                                <div class="form-field">
+                                    <label>Country</label>
+                                    <p-dropdown [options]="countries" [(ngModel)]="countries"
+                                        [showClear]="true"></p-dropdown>
+                                </div>
+                                <div class="form-field">
+                                    <label>State</label>
+                                    <p-dropdown [options]="states" [(ngModel)]="states" [showClear]="true"></p-dropdown>
+                                </div>
+                                <div class="form-field">
+                                    <label>City</label>
+                                    <p-dropdown [options]="cities" [(ngModel)]="cities" [showClear]="true"></p-dropdown>
+                                </div>
+                                <div class="form-field">
+                                    <label>Pin Code</label>
+                                    <input type="text" pInputText />
+                                </div>
+                                <div class="form-field">
+                                    <label>Phone</label>
+                                    <input type="text" pInputText />
+                                </div>
+                                <div class="form-field">
+                                    <label>Email</label>
+                                    <input type="email" pInputText />
+                                </div>
+                                <div class="form-field">
+                                    <label>Longitude</label>
+                                    <input type="text" pInputText />
+                                </div>
+                                <div class="form-field">
+                                    <label>Latitude</label>
+                                    <input type="text" pInputText />
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="form-field">
-                            <label>Late IN</label>
-                            <input pInputText type="text" />
+                        <!-- Right Column (Permanent Address) -->
+                        <div class="form-column-right">
+                            <h5>Permanent Address
+                                <p-button label="CopyFromTemp" styleClass="p-button-primary"
+                                    [style]="{'padding': '3px 5px', 'font-size': '12px'}"></p-button>
+                            </h5>
+
+
+
+                            <div class="address-input-group">
+                                <div class="form-field">
+                                    <label>Address</label>
+                                    <textarea pInputTextarea rows="5"></textarea>
+                                </div>
+                                <div class="form-field">
+                                    <label>Country</label>
+                                    <p-dropdown [options]="countries" [(ngModel)]="countries"
+                                        [showClear]="true"></p-dropdown>
+                                </div>
+                                <div class="form-field">
+                                    <label>State</label>
+                                    <p-dropdown [options]="states" [(ngModel)]="states" [showClear]="true"></p-dropdown>
+                                </div>
+                                <div class="form-field">
+                                    <label>City</label>
+                                    <p-dropdown [options]="cities" [(ngModel)]="cities" [showClear]="true"></p-dropdown>
+                                </div>
+                                <div class="form-field">
+                                    <label>Pin Code</label>
+                                    <input type="text" pInputText />
+                                </div>
+                                <div class="form-field">
+                                    <label>Phone</label>
+                                    <input type="text" pInputText />
+                                </div>
+                                <div class="form-field">
+                                    <label>Email</label>
+                                    <input type="email" pInputText />
+                                </div>
+                                <div class="form-field">
+                                    <label>Longitude</label>
+                                    <input type="text" pInputText />
+                                </div>
+                                <div class="form-field">
+                                    <label>Latitude</label>
+                                    <input type="text" pInputText />
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-field">
-                            <label>Report to</label>
-                            <input pInputText type="text" />
+                    </div>
+
+                </div>
+
+                <div class="section-container">
+                    <div class="section-header">
+                        <i class="pi pi-contact"></i>
+                        <span>Emergency Contact</span>
+                        <i class="pi" [ngClass]="isCollapsed ? 'pi-chevron-down' : 'pi-chevron-up'"
+                            (click)="isCollapsed = !isCollapsed" style="cursor: pointer; float: right;">
+                        </i>
+                    </div>
+
+                    <div class="form-grid" *ngIf="!isCollapsed" formGroupName="empDetail">
+                        <div class="form-column-left">
+                            <div class="form-field">
+                                <label>Name <span class="required">*</span></label>
+                                <input type="text" formControlName="empEmergencyName" />
+                            </div>
+                            <div class="form-field">
+                                <label>Relation</label>
+                                <input type="text" formControlName="empEmergencyRelation" />
+                            </div>
+                            <div class="form-field">
+                                <label>Mobile No.</label>
+                                <input type="number" formControlName="empEmergencyPhoneNo" />
+                            </div>
+                        </div>
+
+                        <div class="form-column-right">
+
+                            <div class="form-field">
+                                <label>Email</label>
+                                <input type="text" formControlName="empEmergencyEmail" />
+                            </div>
+                            <div class="form-field">
+                                <label>Login</label>
+                                <input type="text" formControlName="empLogin" />
+                            </div>
+                            <div class="form-field">
+                                <label>InTime</label>
+                                <input type="text" formControlName="empInTime" />
+                            </div>
+                            <div class="form-field">
+                                <label>OutTime</label>
+                                <input type="text" formControlName="empOutTime" />
+                            </div>
+                            <div class="form-field">
+                                <label>Reporting To</label>
+                                <input type="text" formControlName="empReportingTo" />
+                            </div>
+                            <div class="form-field">
+                                <label>Shift</label>
+                                <input type="text" formControlName="empShift" />
+                            </div>
+                            <div class="form-field">
+                                <label>Designation</label>
+                                <input type="number" formControlName="empDesignation" />
+                            </div>
+                            <div class="form-field">
+                                <label>Dept.</label>
+                                <input type="number" formControlName="empDepartment" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+                <div class="section-container">
+
+                    <div class="section-header">
+                        <i class="pi pi-home"></i>
+                        <span>Official Information</span>
+                        <i class="pi" [ngClass]="isOffInfoCollapsed ? 'pi-chevron-down' : 'pi-chevron-up'"
+                            (click)="isOffInfoCollapsed = !isOffInfoCollapsed" style="cursor: pointer; float: right;">
+                        </i>
+                    </div>
+                    <div class="form-grid" *ngIf="!isOffInfoCollapsed" formGroupName="empOfficialInformation">
+                        <!-- Left Column (Temporary Address) -->
+                        <div class="form-column-left">
+                            <div class="form-field">
+                                <label>SNO</label>
+                                <input type="number" formControlName="sno" />
+                            </div>
+                            <div class="form-field">
+                                <label>EmpCode</label>
+                                <input type="number" formControlName="empCode" />
+                            </div>
+
+                            <div class="form-field">
+                                <label>City Type <span class="required">*</span></label>
+                                <input type="text" formControlName="empCityType" />
+                            </div>
+                            <div class="form-field">
+                                <label>Joining Date <span class="required">*</span></label>
+                                <input type="date" formControlName="empJoiningDate" />
+                            </div>
+
+                            <div class="form-field">
+                                <label>Confirmation Date</label>
+                                <input type="date" formControlName="empConfirmationDate" />
+                            </div>
+
+                            <div class="form-field">
+                                <label>Probabation Months</label>
+                                <input type="number" formControlName="empProbationMonth" />
+                            </div>
+
+                            <div class="form-field">
+                                <label>Notice Days</label>
+                                <input type="number" formControlName="empNoitceDays" />
+                            </div>
+
+                            <div class="form-field">
+                                <label>Salary/Wages</label>
+                                <input type="text" formControlName="empSalaryWages" />
+                            </div>
+
+
+
+
+
+
+                            <div class="form-field">
+                                <label>PAN</label>
+                                <input type="text" formControlName="empPan" />
+                            </div>
+                        </div>
+
+
+                        <!-- Right Column (Permanent Address) -->
+                        <div class="form-column-right">
+
+
+
+
+
+                            <div class="form-field">
+                                <label>UAN No.</label>
+                                <input type="number" formControlName="empUanno" />
+                            </div>
+
+                            <div class="form-field">
+                                <label>Voter Card No.</label>
+                                <input type="text" formControlName="empVoterCardNo" />
+                            </div>
+
+
+
+                            <div class="form-field">
+                                <label>Adhaar Card No.</label>
+                                <input type="number" formControlName="empAadharCardNo" />
+                            </div>
+
+                            <div class="form-field">
+                                <label>Passport No.</label>
+                                <input type="text" formControlName="empPassportNo" />
+                            </div>
+                            <div class="form-field">
+                                <label>Passport Valid Upto</label>
+                                <input type="date" formControlName="empPassportValidDate" />
+                            </div>
+
+                            <div class="form-field">
+                                <label>DI No.</label>
+                                <input type="text" formControlName="empDlno" />
+                            </div>
+
+                            <div class="form-field">
+                                <label>DL Valid Upto</label>
+                                <input type="date" formControlName="empDlvalidDate" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="section-container">
+
+                    <div class="section-header">
+                        <i class="pi pi-file"></i>
+                        <span>ESI PF</span>
+                        <i class="pi" [ngClass]="isEsiInfoCollapsed ? 'pi-chevron-down' : 'pi-chevron-up'"
+                            (click)="isEsiInfoCollapsed = !isEsiInfoCollapsed" style="cursor: pointer; float: right;">
+                        </i>
+                    </div>
+                    <div class="form-grid" *ngIf="!isEsiInfoCollapsed">
+                        <!-- Left Column (Temporary Address) -->
+                        <div class="form-column-left">
+
+
+                            <div class="form-field">
+                                <label>ESI Application</label>
+                                <p-checkbox [(ngModel)]="esiApplication" [binary]="true"></p-checkbox>
+                            </div>
+
+                            <div class="form-field">
+                                <label>PF Application</label>
+                                <p-checkbox [(ngModel)]="pfApplication" [binary]="true"></p-checkbox>
+                            </div>
+
+                            <div class="form-field">
+                                <label>Prof. Tax Applicable</label>
+                                <p-checkbox [(ngModel)]="profTaxApplicable" [binary]="true"></p-checkbox>
+                            </div>
+
+                            <div class="form-field">
+                                <label>LWF Applicable</label>
+                                <p-checkbox [(ngModel)]="lwfApplicable" [binary]="true"></p-checkbox>
+                            </div>
+
+                            <div class="form-field">
+                                <label>Overtime Applicable</label>
+                                <p-checkbox [(ngModel)]="overtimeApplicable" [binary]="true"></p-checkbox>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="section-container">
+
+                    <div class="section-header">
+                        <i class="pi pi-file"></i>
+                        <span>Bank Details</span>
+                        <i class="pi" [ngClass]="isBankInfoCollapsed ? 'pi-chevron-down' : 'pi-chevron-up'"
+                            (click)="isBankInfoCollapsed = !isBankInfoCollapsed" style="cursor: pointer; float: right;">
+                        </i>
+                    </div>
+
+                    <div class="form-grid" *ngIf="!isBankInfoCollapsed" formGroupName="empBankDetail">
+                        <!-- Left Column (labels and input fields) -->
+                        <div class="form-column-left">
+                            <div class="form-field">
+                                <label>SNO</label>
+                                <input type="number" formControlName="sno" />
+                            </div>
+                            <div class="form-field">
+                                <label>EmpCode</label>
+                                <input type="number" formControlName="empCode" />
+                            </div>
+                            <div class="form-field">
+                                <label>Bank <span class="required">*</span></label>
+                                <input type="number" formControlName="empBankCode" />
+                            </div>
+                            <div class="form-field">
+                                <label>Bank Name<span class="required">*</span></label>
+                                <input type="text" formControlName="empBankName" />
+                            </div>
+                            <div class="form-field">
+                                <label>Branch</label>
+                                <input type="text" formControlName="empBranch" />
+                            </div>
+
+                            <div class="form-field">
+                                <label>Bank Account No.</label>
+                                <input type="number" formControlName="empBankAccount" />
+                            </div>
+
+                        </div>
+
+                        <!-- Right Column (Permanent Address) -->
+                        <div class="form-column-right">
+
+
+
+
+
+
+
+
+                            <div class="form-field">
+                                <label>Swift/IFSC Code</label>
+                                <input type="text" formControlName="empIfsccode" />
+                            </div>
+                            <div class="form-field">
+                                <label>A/C Holder Name</label>
+                                <input type="text" formControlName="empAccountHolderName" />
+                            </div>
+
                         </div>
 
                     </div>
 
-                    <!-- Right Column (Permanent Address) -->
-                    <div class="form-column-right">
+                </div>
+                <div class="section-container">
+
+                    <div class="section-header">
+                        <i class="pi pi-file"></i>
+                        <span>Emp Attatchment</span>
+                        <i class="pi" [ngClass]="isBankInfoCollapsed ? 'pi-chevron-down' : 'pi-chevron-up'"
+                            (click)="isBankInfoCollapsed = !isBankInfoCollapsed" style="cursor: pointer; float: right;">
+                        </i>
+                    </div>
+
+                    <div class="form-grid" *ngIf="!isBankInfoCollapsed" formGroupName="empAttachment">
+                        <!-- Left Column (labels and input fields) -->
+                        <div class="form-column-left">
+                            <div class="form-field">
+                                <label>SNO</label>
+                                <input type="number" formControlName="sno" />
+                            </div>
+                            <div class="form-field">
+                                <label>EmpCode</label>
+                                <input type="number" formControlName="empCode" />
+                            </div>
+                            <div class="form-field">
+                                <label>AttNo. <span class="required">*</span></label>
+                                <input type="text" formControlName="empAttachedNo" />
+                            </div>
+                            <div class="form-field">
+                                <label>AttName<span class="required">*</span></label>
+                                <input type="text" formControlName="empAttachedDocumentName" />
+                            </div>
+                            <div class="form-field">
+                                <label>Doc</label>
+                                <input type="text" formControlName="empAttachedDocument" />
+                            </div>
 
 
-
-
-
-
-
-
-                        <div class="form-field">
-                            <label>Designation</label>
-                            <input type="text" pInputText />
                         </div>
-                        <div class="form-field">
-                            <label>Category</label>
-                            <input type="text" pInputText />
+
+                        <!-- Right Column (Permanent Address) -->
+
+                    </div>
+
+                </div>
+                <!-- <div class="section-container">
+                    <div class="section-header">
+                        <i class="pi pi-file"></i>
+                        <span>Qualification</span>
+
+                       
+                        <i class="pi" [ngClass]="isQualificationCollapsed ? 'pi-chevron-down' : 'pi-chevron-up'"
+                            (click)="isQualificationCollapsed = !isQualificationCollapsed"
+                            style="cursor: pointer; float: right;">
+                        </i>
+                    </div>
+
+                   
+                    <div *ngIf="!isQualificationCollapsed" formGroupName="empQualificationExperience">
+                        <p-table [value]="qualificationData" [paginator]="true" [rows]="5"
+                            styleClass="p-datatable-striped increased-row-size">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th>Degree</th>
+                                    <th>Passing Year</th>
+                                    <th>Institute/Board/University</th>
+                                    <th>Score</th>
+                                </tr>
+                            </ng-template>
+
+                            <ng-template pTemplate="body" let-qualification let-i="rowIndex">
+                                <tr>
+                                    <td><input type="text" formControlName="empQualification" placeholder="Degree" />
+                                    </td>
+                                    <td><input type="text" formControlName="empPassingYear"
+                                            placeholder="Passing Year" />
+                                    <td><input type="text" formControlName="empInstitute"
+                                            placeholder="Institute/Board/University" />
+                                    <td><input type="text" formControlName="empScore" placeholder="Score" /></td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+
+                        <div class="add-lines-button">
+                            <button pButton type="button" icon="pi pi-plus" label="Add Lines"
+                                (click)="addQualificationRow()"></button>
                         </div>
-                        <div class="form-field">
-                            <label>Employee Shift</label>
-                            <input type="text" pInputText />
+                    </div>
+                </div> -->
+
+                <!-- <div class="section-container">
+                    <div class="section-header">
+                        <i class="pi pi-file"></i>
+                        <span>Experience</span>
+
+                        <i class="pi" [ngClass]="isExperienceCollapsed ? 'pi-chevron-down' : 'pi-chevron-up'"
+                            (click)="isExperienceCollapsed = !isExperienceCollapsed"
+                            style="cursor: pointer; float: right;">
+                        </i>
+                    </div>
+
+               
+                    <div *ngIf="!isExperienceCollapsed" formGroupName="empQualificationExperience">
+                        <p-table [value]="experienceData" [paginator]="true" [rows]="5"
+                            styleClass="p-datatable-striped increased-row-size">
+
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th>Company Name</th>
+                                    <th>Designation</th>
+                                    <th>Place</th>
+                                    <th>From Date</th>
+                                    <th>To Date</th>
+                                    <th>Year</th>
+                                    <th>Month</th>
+                                    <th>Reason For Leaving</th>
+                                </tr>
+                            </ng-template>
+
+                           
+                            <ng-template pTemplate="body" let-experience let-i="rowIndex">
+                                <tr>
+                                    <td> <input type="text" formControlName="empExpCompany"
+                                            placeholder="Company Name" />
+                                    </td>
+                                    <td> <input type="text" formControlName="empExpDesignation"
+                                            placeholder="Designation" />
+                                    </td>
+                                    <td><input type="text" formControlName="empExpPlace" placeholder="Place" />
+                                    </td>
+                                    <td><input type="text" formControlName="empExpFromDate" placeholder="From Date"
+                                            type="date" /></td>
+                                    <td><input type="text" formControlName="empExpToDate" placeholder="To Date"
+                                            type="date" /></td>
+                                    <td><input type="text" formControlName="empExpYear" placeholder="Year"
+                                            type="number" />
+                                    </td>
+                                    <td><input type="text" formControlName="empExpMonth" placeholder="Month"
+                                            type="number" /></td>
+                                    <td><input type="text" formControlName="empExpReasonLeaving"
+                                            placeholder="Reason For Leaving" /></td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+
+                        
+                        <div class="add-lines-button">
+                            <button pButton type="button" icon="pi pi-plus" label="Add Lines"
+                                (click)="addExperienceRow()"></button>
                         </div>
-                        <div class="form-field">
-                            <label>Early Out</label>
-                            <input type="text" pInputText />
+                    </div>
+                </div> -->
+
+                <!-- <div class="section-container">
+                    <div class="section-header">
+                        <i class="pi pi-clock"></i>
+                        <span>Leave Policy</span>
+
+                        
+                        <i class="pi" [ngClass]="isLeavePolicyCollapsed ? 'pi-chevron-down' : 'pi-chevron-up'"
+                            (click)="isLeavePolicyCollapsed = !isLeavePolicyCollapsed"
+                            style="cursor: pointer; float: right;">
+                        </i>
+                    </div>
+
+                   
+                    <div *ngIf="!isLeavePolicyCollapsed">
+                        <p-table [value]="leaveData" [paginator]="true" [rows]="5" styleClass="p-datatable-striped">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th>Leave</th>
+                                    <th class="checkbox-container">Applicable</th>
+                                </tr>
+                            </ng-template>
+
+                            <ng-template pTemplate="body" let-leave>
+                                <tr>
+                                    <td>{{ leave.name }}</td>
+                                    <td>
+                                        <div class="checkbox-container">
+                                            <p-checkbox [(ngModel)]="leave.applicable" [binary]="true"></p-checkbox>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </div> -->
+
+                <!-- <div class="section-container">
+                    <div class="section-header">
+                        <i class="pi pi-money-bill"></i>
+                        <span>Salary Structure</span>
+
+                       
+                        <i class="pi" [ngClass]="isSalaryStructureCollapsed ? 'pi-chevron-down' : 'pi-chevron-up'"
+                            (click)="isSalaryStructureCollapsed = !isSalaryStructureCollapsed"
+                            style="cursor: pointer; float: right;">
+                        </i>
+                    </div>
+
+                  
+                    <div *ngIf="!isSalaryStructureCollapsed">
+                        <p-table [value]="salaryData" [paginator]="true" [rows]="5"
+                            styleClass="p-datatable-striped compact-table">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th>Description</th>
+                                    <th>Alias</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </ng-template>
+
+                            <ng-template pTemplate="body" let-salary>
+                                <tr>
+                                    <td>{{ salary.description }}</td>
+                                    <td>{{ salary.alias }}</td>
+                                    <td>
+                                        <p-inputNumber [(ngModel)]="salary.amount" [showButtons]="true" [min]="0"
+                                            [max]="999999" mode="decimal" [useGrouping]="true"></p-inputNumber>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </div> -->
+                <div class="section-container">
+
+                    <div class="section-header">
+                        <i class="pi pi-file"></i>
+                        <span>Leave Detail</span>
+                        <i class="pi" [ngClass]="isBankInfoCollapsed ? 'pi-chevron-down' : 'pi-chevron-up'"
+                            (click)="isBankInfoCollapsed = !isBankInfoCollapsed" style="cursor: pointer; float: right;">
+                        </i>
+                    </div>
+
+                    <div class="form-grid" *ngIf="!isBankInfoCollapsed" formGroupName="empLeaveDetail">
+                        <!-- Left Column (labels and input fields) -->
+                        <div class="form-column-left">
+                            <div class="form-field">
+                                <label>SNO</label>
+                                <input type="number" formControlName="sno" />
+                            </div>
+                            <div class="form-field">
+                                <label>EmpCode</label>
+                                <input type="number" formControlName="empCode" />
+                            </div>
+                            <div class="form-field">
+                                <label>Leave Type <span class="required">*</span></label>
+                                <input type="text" formControlName="empLeavesType" />
+                            </div>
+                            <div class="form-field">
+                                <label>Leaves Alot<span class="required">*</span></label>
+                                <input type="text" formControlName="empLeavesAllot" />
+                            </div>
+
+
+                        </div>
+
+                        <!-- Right Column (Permanent Address) -->
+
+
+                    </div>
+
+                </div>
+                <div class="section-container">
+
+                    <div class="section-header">
+                        <i class="pi pi-file"></i>
+                        <span>Posting Attatchment</span>
+                        <i class="pi" [ngClass]="isBankInfoCollapsed ? 'pi-chevron-down' : 'pi-chevron-up'"
+                            (click)="isBankInfoCollapsed = !isBankInfoCollapsed" style="cursor: pointer; float: right;">
+                        </i>
+                    </div>
+
+                    <div class="form-grid" *ngIf="!isBankInfoCollapsed" formGroupName="empPostingAttachment">
+                        <!-- Left Column (labels and input fields) -->
+                        <div class="form-column-left">
+                            <div class="form-field">
+                                <label>SNO</label>
+                                <input type="number" formControlName="sno" />
+                            </div>
+                            <div class="form-field">
+                                <label>EmpCode</label>
+                                <input type="number" formControlName="empCode" />
+                            </div>
+                            <div class="form-field">
+                                <label>EmpDeptCode <span class="required">*</span></label>
+                                <input type="number" formControlName="empDepartmentCode" />
+                            </div>
+                            <div class="form-field">
+                                <label>EmpDesiCode<span class="required">*</span></label>
+                                <input type="number" formControlName="empDesignationCode" />
+                            </div>
+                            <div class="form-field">
+                                <label>EmpDept.<span class="required">*</span></label>
+                                <input type="text" formControlName="empDepartment" />
+                            </div>
+                            <div class="form-field">
+                                <label>EmpDesi.<span class="required">*</span></label>
+                                <input type="text" formControlName="empDesignation" />
+                            </div>
+
+
+                        </div>
+
+                        <!-- Right Column (Permanent Address) -->
+
+
+                    </div>
+
+                </div>
+
+                <div class="section-container">
+
+                    <div class="section-header">
+                        <i class="pi pi-file"></i>
+                        <span>Qualification And Experience</span>
+                        <i class="pi" [ngClass]="isBankInfoCollapsed ? 'pi-chevron-down' : 'pi-chevron-up'"
+                            (click)="isBankInfoCollapsed = !isBankInfoCollapsed" style="cursor: pointer; float: right;">
+                        </i>
+                    </div>
+
+                    <div class="form-grid" *ngIf="!isBankInfoCollapsed" formGroupName="empQualificationExperience">
+                        <!-- Left Column (labels and input fields) -->
+                        <div class="form-column-left">
+                            <div class="form-field">
+                                <label>SNO</label>
+                                <input type="number" formControlName="sno" />
+                            </div>
+                            <div class="form-field">
+                                <label>EmpCode</label>
+                                <input type="number" formControlName="empCode" />
+                            </div>
+                            <div class="form-field">
+                                <label>Emp Qualification <span class="required">*</span></label>
+                                <input type="text" formControlName="empQualification" />
+                            </div>
+                            <div class="form-field">
+                                <label>Emp Passing Year<span class="required">*</span></label>
+                                <input type="number" formControlName="empPassingYear" />
+                            </div>
+                            <div class="form-field">
+                                <label>Emp Inst.<span class="required">*</span></label>
+                                <input type="text" formControlName="empInstitute" />
+                            </div>
+                            <div class="form-field">
+                                <label>Emp Score<span class="required">*</span></label>
+                                <input type="text" formControlName="empScore" />
+                            </div>
+                            <div class="form-field">
+                                <label>Emp ExpComp.<span class="required">*</span></label>
+                                <input type="text" formControlName="empExpCompany" />
+                            </div>
+                            <div class="form-field">
+                                <label>Emp ExpDesignation<span class="required">*</span></label>
+                                <input type="text" formControlName="empExpDesignation" />
+                            </div>
+                            <div class="form-field">
+                                <label>Emp ExpPlace<span class="required">*</span></label>
+                                <input type="text" formControlName="empExpPlace" />
+                            </div>
+                            <div class="form-field">
+                                <label>Emp ExpFromDate<span class="required">*</span></label>
+                                <input type="date" formControlName="empExpFromDate" />
+                            </div>
+                            <div class="form-field">
+                                <label>Emp ExpToDate<span class="required">*</span></label>
+                                <input type="date" formControlName="empExpToDate" />
+                            </div>
+                            <div class="form-field">
+                                <label>Emp ExpYear<span class="required">*</span></label>
+                                <input type="number" formControlName="empExpYear" />
+                            </div>
+                            <div class="form-field">
+                                <label>Emp ExpMonth<span class="required">*</span></label>
+                                <input type="number" formControlName="empExpMonth" />
+                            </div>
+                            <div class="form-field">
+                                <label>Emp ExpReason<span class="required">*</span></label>
+                                <input type="text" formControlName="empExpReasonLeaving" />
+                            </div>
+
+
+
+
+
+                        </div>
+
+                        <!-- Right Column (Permanent Address) -->
+
+
+                    </div>
+
+                </div>
+
+                <div class="section-container">
+
+                    <div class="section-header">
+                        <i class="pi pi-file"></i>
+                        <span>Posting and Custom Fields</span>
+                        <i class="pi" [ngClass]="isPostInfoCollapsed ? 'pi-chevron-down' : 'pi-chevron-up'"
+                            (click)="isPostInfoCollapsed = !isPostInfoCollapsed" style="cursor: pointer; float: right;">
+                        </i>
+                    </div>
+
+                    <div class="form-grid" *ngIf="!isPostInfoCollapsed">
+                        <!-- Left Column (labels and input fields) -->
+                        <div class="form-column-left">
+                            <div class="form-field">
+                                <label>Effective From<span class="required">*</span></label>
+                                <input pInputText type="date" />
+                            </div>
+                            <div class="form-field">
+                                <label>Department<span class="required">*</span></label>
+                                <input pInputText type="text" />
+                            </div>
+
+                            <div class="form-field">
+                                <label>Late IN</label>
+                                <input pInputText type="text" />
+                            </div>
+                            <div class="form-field">
+                                <label>Report to</label>
+                                <input pInputText type="text" />
+                            </div>
+
+                        </div>
+
+                        <!-- Right Column (Permanent Address) -->
+                        <div class="form-column-right">
+
+
+
+
+
+
+
+
+                            <div class="form-field">
+                                <label>Designation</label>
+                                <input type="text" pInputText />
+                            </div>
+                            <div class="form-field">
+                                <label>Category</label>
+                                <input type="text" pInputText />
+                            </div>
+                            <div class="form-field">
+                                <label>Employee Shift</label>
+                                <input type="text" pInputText />
+                            </div>
+                            <div class="form-field">
+                                <label>Early Out</label>
+                                <input type="text" pInputText />
+                            </div>
+
                         </div>
 
                     </div>
 
                 </div>
 
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <p-button label="Save" icon="pi pi-save" styleClass="p-button-primary"></p-button>
+                    <p-button label="Clear" icon="pi pi-refresh" styleClass="p-button-secondary"></p-button>
+                    <p-button label="Print" icon="pi pi-print" styleClass="p-button-secondary"></p-button>
+                    <p-button label="Delete" icon="pi pi-trash" styleClass="p-button-danger"></p-button>
+                    <p-button label="Exit" icon="pi pi-times" styleClass="p-button-secondary"></p-button>
+                    <p-button label="Import" icon="pi pi-download" styleClass="p-button-secondary"></p-button>
+                </div>
             </div>
+            <button type="submit">Submit</button>
 
-            <!-- Action Buttons -->
-            <div class="action-buttons">
-                <p-button label="Save" icon="pi pi-save" styleClass="p-button-primary"></p-button>
-                <p-button label="Clear" icon="pi pi-refresh" styleClass="p-button-secondary"></p-button>
-                <p-button label="Print" icon="pi pi-print" styleClass="p-button-secondary"></p-button>
-                <p-button label="Delete" icon="pi pi-trash" styleClass="p-button-danger"></p-button>
-                <p-button label="Exit" icon="pi pi-times" styleClass="p-button-secondary"></p-button>
-                <p-button label="Import" icon="pi pi-download" styleClass="p-button-secondary"></p-button>
-            </div>
-        </div>
-    </p-dialog>
+        </p-dialog>
+    </form>
 </div>
