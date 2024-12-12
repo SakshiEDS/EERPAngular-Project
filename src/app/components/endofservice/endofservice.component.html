@@ -1,0 +1,85 @@
+<div *ngIf="canAddEndOfService"></div>
+<p-toast></p-toast>
+<div class="toppest-header">
+    <div>Employee End Of Service</div>
+    <p-button icon="pi pi-refresh"
+        [style]="{ width: '29px', height: '29px', 'border-radius': '29px', 'align-item':'center', 'display':'flex' }"
+        id="refres" styleClass="p-button-secondary">
+    </p-button>
+</div>
+<p-card>
+    <div class="p-fluid p-formgrid" style="justify-content: center; display: flex;">
+        <div style="width: 80%; position: absolute; top: 10%;">
+            <div style="border: 1px solid #d6d6d6;">
+                <div class="form-grid"
+                    style="line-height: 30px; border-top: 1px solid #d6d6d6; margin-top: 15px; border-bottom: 1px solid #d6d6d6;">
+                    <div>
+                        <div class="form-field">
+                            <label for="employee">Employee Name <span class="required">*</span></label>
+                            <p-dropdown id="employee" [options]="employees" [(ngModel)]="selectedEmployee"
+                                (onChange)="onEmployeeSelect($event)" placeholder="Select Employee">
+                            </p-dropdown>
+                        </div>
+                        <div class="form-field">
+                            <label for="RequestNo">Request No</label>
+                            <input id="RequestNo" type="text" pInputText [(ngModel)]="voucherNo" readonly disabled />
+                        </div>
+
+                        <div class="form-field">
+                            <label for="joiningDate">Joining Date</label>
+                            <input id="joiningDate" type="date" pInputText [(ngModel)]="joiningDate" disabled />
+                        </div>
+                        <div class="form-field">
+                            <label for="confirmationDate">Confirmation Date <span class="required">*</span></label>
+                            <input id="confirmationDate" type="date" pInputText [(ngModel)]="confirmationDate"
+                                disabled />
+                        </div>
+                    </div>
+                    <div>
+                        <div class="form-field">
+                            <label for="department">Department <span class="required">*</span></label>
+                            <input id="department" type="text" pInputText [(ngModel)]="department" disabled />
+                        </div>
+                        <div class="form-field">
+                            <label for="designation">Designation</label>
+                            <input id="designation" type="text" pInputText [(ngModel)]="designation" disabled />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-grid"
+                    style="line-height: 30px; border-top: 1px solid #d6d6d6; margin-top: 15px; border-bottom: 1px solid #d6d6d6;">
+                    <div>
+                        <div class="form-field">
+                            <label for="fromDate">Date of Resignation</label>
+                            <input id="fromDate" [(ngModel)]="fromDate" type="date" pInputText required
+                                name="fromDate" />
+                        </div>
+                    </div>
+                    <div>
+                        <div class="form-field">
+                            <label for="toDate">Relieving Date</label>
+                            <input id="toDate" [(ngModel)]="toDate" type="date" pInputText required name="toDate" />
+                        </div>
+                    </div>
+                </div>
+
+                <div style="padding: 1rem;">
+                    <div class="form-field">
+                        <label for="reason">Reason For leaving</label>
+                        <textarea id="reason" pInputTextarea [(ngModel)]="reason"
+                            style="height: 80px; width: 87%; resize: vertical;"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons" style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
+                <button pButton type="button" label="Submit" class="p-button-success"
+                    (click)="saveEndOfServiceAdjustment()" [disabled]="isSubmitting"
+                    style="width: auto; padding: 5px 15px; font-size: 14px;"></button>
+                <button pButton type="button" label="Cancel" class="p-button-secondary"
+                    (click)="resetEndOfServiceForm()" style="width: auto; padding: 5px 15px; font-size: 14px;"></button>
+            </div>
+        </div>
+    </div>
+</p-card>

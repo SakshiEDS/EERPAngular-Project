@@ -1,0 +1,44 @@
+<p-toast></p-toast>
+<div style="padding: 5px 0;">
+    <p-button (click)="showDialog()" label="Create New Permission" icon="pi pi-save" iconPos="left"
+        styleClass="p-button-secondary custom-button">
+    </p-button>
+</div>
+
+<p-dialog header="Manage User" [(visible)]="visible" [modal]="true" [style]="{ width: '40%' }"
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [draggable]="true" [resizable]="false">
+    <div class="employee-master-container">
+        <div class="section-container">
+            <div class="form-grid">
+                <div class="form-column-left">
+
+                    <!-- Name Field -->
+                    <div class="form-field">
+                        <label>Name <span class="required">*</span></label>
+                        <input type="text" [(ngModel)]="name" />
+                    </div>
+
+                    <!-- Active Status -->
+                    <div class="form-field">
+                        <label>Active status</label>
+                        <p-checkbox binary="true" [(ngModel)]="activeStatus"></p-checkbox>
+                    </div>
+
+                    <!-- Description Field -->
+                    <div class="form-field">
+                        <label>Description <span class="required">*</span></label>
+                        <input type="text" [(ngModel)]="description" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <p-button (click)="onSubmit()" id="SubmitBtn" label="Save" icon="pi pi-save" styleClass="p-button-primary"
+                [style]="{ padding: '3px' }" [disabled]="isSubmitting"></p-button>
+            <p-button (click)="hideDialog()" id="ExitBtn" label="Exit" icon="pi pi-times"
+                styleClass="p-button-secondary" [style]="{ padding: '3px' }"></p-button>
+        </div>
+    </div>
+</p-dialog>

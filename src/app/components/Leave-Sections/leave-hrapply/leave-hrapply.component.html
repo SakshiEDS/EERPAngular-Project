@@ -1,0 +1,145 @@
+<div *ngIf="canAddLeaveHrApp">
+    <p-toast></p-toast>
+
+    <div class="toppest-header">
+        <div>Leave HR Apply</div>
+        <p-button icon="pi pi-refresh"
+            [style]="{ width: '29px', height: '29px', 'border-radius': '29px', 'align-item':'center', 'display':'flex' }"
+            id="refres" styleClass="p-button-secondary">
+        </p-button>
+    </div>
+
+    <p-card>
+        <div class="p-fluid p-formgrid" style="justify-content: center; display: flex;" id="body">
+            <div style="width: 80%; position: absolute; top: 10%;">
+                <div style="border: 1px solid #d6d6d6;">
+                    <div class="form-grid" style="line-height: 30px;
+                border-top: 1px solid #d6d6d6;
+                margin-top: 15px;
+                border-bottom: 1px solid #d6d6d6;">
+                        <div>
+                            <div class="form-field">
+                                <label for="LeaveRequestDate">Leave Request Date</label>
+                                <input id="LeaveRequestDate" type="date" readonly [(ngModel)]="LeaveRequestDate"
+                                    pInputText />
+                            </div>
+                            <div class="form-field">
+                                <label for="RequestNo">Request No</label>
+                                <input id="RequestNo" type="text" pInputText [(ngModel)]="voucherNo" readonly />
+                            </div>
+                            <div class="form-field">
+                                <label for="employee">Employee Name <span class="required">*</span></label>
+                                <p-dropdown id="employee" [options]="employees" [(ngModel)]="selectedEmployee"
+                                    (onChange)="onEmployeeSelect($event)" placeholder="Select Employee">
+                                </p-dropdown>
+                            </div>
+                            <div class="form-field">
+                                <label for="Manager">Manager Code</label>
+                                <input id="Manager" type="text" pInputText [(ngModel)]="managerName" />
+                            </div>
+
+
+
+                        </div>
+                        <div>
+
+
+
+
+
+                            <div class="form-field">
+                                <label for="joiningDate">Joining Date</label>
+                                <input id="joiningDate" type="date" pInputText [(ngModel)]="joiningDate" />
+                            </div>
+                            <div class="form-field">
+                                <label for="confirmationDate">Confirmation Date <span class="required">*</span></label>
+                                <input id="confirmationDate" type="date" pInputText [(ngModel)]="confirmationDate" />
+                            </div>
+                            <div class="form-field">
+                                <label for="department">Department <span class="required">*</span></label>
+                                <input id="department" type="text" pInputText [(ngModel)]="department" />
+                            </div>
+                            <div class="form-field">
+                                <label for="designation">Designation</label>
+                                <input id="designation" type="text" pInputText [(ngModel)]="designation" />
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-grid" style="    line-height: 30px;
+                border-top: 1px solid #d6d6d6;
+                margin-top: 15px;
+                border-bottom: 1px solid #d6d6d6;">
+                        <div>
+                            <div class="form-field">
+                                <label for="LeaveType">Leave Type <span class="required">*</span></label>
+                                <p-dropdown id="LeaveType" [options]="leaveCodes" [(ngModel)]="selectedLeaveCode"
+                                    placeholder="Select">
+                                </p-dropdown>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="fromDate">From Date</label>
+                                <input id="fromDate" [(ngModel)]="fromDate" type="date" pInputText
+                                    (change)="onDateChange()" />
+                            </div>
+                            <div class="form-field">
+                                <label for="toDate">To Date</label>
+                                <input id="toDate" [(ngModel)]="toDate" type="date" pInputText
+                                    (change)="onDateChange()" />
+                            </div>
+
+                        </div>
+                        <div>
+                            <div class="form-field">
+                                <label for="leaveIn">Leave In <span class="required">*</span></label>
+                                <p-dropdown id="leaveIn" [options]="leaveIn" [(ngModel)]="selectedLeaveIn"
+                                    (ngModelChange)="onLeaveInChange()" [disabled]="dropdownDisabled"
+                                    placeholder="Select">
+                                </p-dropdown>
+                            </div>
+                            <div class="form-field">
+                                <label for="days">Days</label>
+                                <input id="days" type="text" pInputText [(ngModel)]="days" readonly />
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div style="padding: 1rem;">
+                        <div class="form-field">
+                            <label for="reason">Reason</label>
+                            <textarea id="reason" pInputTextarea [(ngModel)]="reason"
+                                style="height: 80px; width: 87%; resize: vertical;"></textarea>
+                        </div>
+
+                    </div>
+                    <div style="padding: 1rem;">
+                        <div class="form-field">
+                            <label for="reason">Remark</label>
+                            <textarea id="reason" pInputTextarea [(ngModel)]="remark"
+                                style="height: 80px; width: 87%; resize: vertical;"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="canAddLeaveHrApp" class="action-buttons"
+                    style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
+                    <button *ngIf="canAddLeaveHrApp" pButton type="button" label="Submit" class="p-button-success"
+                        id="SubmitBtn" (click)="submitHRApplication()"
+                        style="width: auto; padding: 5px 15px; font-size: 14px;" [disabled]="isSubmitting"></button>
+                    <button pButton type="button" label="Clear" class="p-button-secondary" id="ClearBtn"
+                        (click)="cancelLeaveApplication()"
+                        style="width: auto; padding: 5px 15px; font-size: 14px;"></button>
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </p-card>
+</div>

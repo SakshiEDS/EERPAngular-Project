@@ -1,23 +1,189 @@
-:host ::ng-deep {
-    .p-button-outlined {
-        &.p-button-light {
-            color: white;
-            border-color: white;
+html {
+    font-size: 14px;
+}
+
+th {
+    font-size: 12px;
+    font-weight: 100;
+}
+
+
+#header-style {
+    padding-top: 6px !important;
+    padding: 7px 5px;
+    text-align: left;
+    font-size: 12px;
+    background-color: var(--TableTop-background-color);
+    color: var(--TableTop-color);
+
+}
+
+#top-header {
+    text-align: center;
+    // background: #164e7f;
+    // color: white;
+    padding: 5px 19px;
+}
+
+::ng-deep p-dropdown span.p-dropdown-label {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+/* Header styling */
+#header-style {
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 12px;
+    // background: #164e7f;
+    // color: white;
+}
+
+
+.toppest-header {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    font-family: 'Roboto Condensed', sans-serif;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--SectionTitleNav-color);
+    background-color: var(--SectionTitleNav-background-color);
+    padding: 2px 0;
+}
+
+#body {
+    height: var(--body-height) !important;
+    margin-left: var(--body-margin-left) !important;
+    // padding-left: var(body-padding-left);
+    padding-left: var(--body-padding-left);
+    padding-right: var(--body-padding-right);
+}
+
+
+
+.section-container {
+    margin-bottom: 1rem;
+
+    .section-header {
+        background: var(--ModalHeaders-background-color);
+        color: var(--ModalHeaders-color);
+        padding: 0.5rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        i {
+            font-size: 1.2rem;
         }
     }
+}
 
-    .p-datatable .p-datatable-thead>tr>th {
-        background-color: #1B4F72;
-        color: white;
-        padding: 0.5rem;
-    }
 
-    .p-datatable .p-datatable-tbody>tr>td {
-        padding: 0.5rem;
-    }
+::ng-deep .p-dialog-draggable .p-dialog-header {
+    background-color: var(--ModalHeaders-background-color);
+    color: var(--ModalHeaders-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
 
-    .p-checkbox {
-        width: 1.25rem;
-        height: 1.25rem;
-    }
+.p-dialog-header .p-button {
+    color: var(--ModalHeaderCrossBtn-color);
+    /* White icon color */
+    border: none;
+    background-color: transparent;
+    /* Transparent button */
+}
+
+
+::ng-deep #Edit-Button button {
+    background-color: transparent;
+    border: none;
+    padding: 0px;
+    color: var(--TableEditBtn-color);
+}
+
+
+
+::ng-deep #Delete-Button button {
+    background-color: transparent;
+    border: none;
+    color: var(--TableDeleteBtn-color);
+}
+
+// #Delete-Button {
+//   background-color: transparent;
+//   border: none;
+//   color: var(--TableDeleteBtn-color);
+//   margin-top: 5px;
+// }
+
+// #Delete-Button .p-button-icon {
+//   font-size: 15px;
+// }
+
+.TableHeader {
+    padding: 5px 3px;
+}
+
+::ng-deep #FileUpload .p-fileupload {
+    margin-top: 5px;
+}
+
+
+::ng-deep #FileUpload .p-ripple {
+    background-color: transparent;
+    border: none;
+    color: var(--TableEditBtn-color);
+}
+
+#AddLineBtn {
+    background-color: var(--main-background-color);
+    color: var(--default-color);
+    border: none;
+    border-radius: 6px;
+    padding: 2px 6px;
+
+}
+
+::ng-deep #AddLineBtn .p-button-icon {
+    font-size: 13px;
+    font-weight: 200;
+}
+
+::ng-deep #AddLineBtn .p-button-label {
+    font-size: 13px;
+    margin-left: 5px;
+    font-weight: 200;
+}
+
+#Upload {
+    background-color: var(--main-background-color);
+    color: var(--default-color);
+    border: none;
+    border-radius: 6px;
+    padding: 2px 6px;
+}
+
+#Upload .p-button-icon {
+    font-size: 13px;
+    font-weight: 200;
+}
+
+
+::ng-deep #Upload .p-button-label {
+    font-size: 13px;
+    margin-left: 5px;
+    font-weight: 200;
+}
+
+::ng-deep #UploadBtn .p-component {
+    background-color: transparent;
+    border: none;
+    color: green;
 }

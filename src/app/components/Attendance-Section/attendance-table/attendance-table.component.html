@@ -1,0 +1,81 @@
+<div class="toppest-header">
+    <div>Attendance Dashboard</div>
+    <p-button icon="pi pi-refresh"
+        [style]="{ width: '29px', height: '29px', 'border-radius': '29px', 'align-item':'center', 'display':'flex' }"
+        id="refres" styleClass="p-button-secondary">
+    </p-button>
+</div>
+<div class="card">
+    <div>
+        <input type="month" [(ngModel)]="selectedMonthYear" (change)="fetchAttendance()">
+    </div>
+    <p-table #dt [value]="employees" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[10, 25, 50]"
+        [resizableColumns]="true" columnResizeMode="expand" styleClass="p-datatable-gridlines"
+        [tableStyle]="{'min-width': '100rem'}">
+        <!-- Caption with Search Box -->
+        <ng-template pTemplate="caption">
+            <div class="flex justify-content-between">
+                <div class="search-box-container">
+                    <!-- Search Icon -->
+                    <span class="pi pi-search"
+                        style="position: absolute; top: 50%; transform: translateY(-50%); font-size: 18px; color: #888; right: 14.4%; padding: 0px 3px; padding-bottom: 1px;"></span>
+
+                    <!-- Search Input Box -->
+                    <input type="text" [(ngModel)]="searchText" (input)="filterTable()" placeholder="Search..."
+                        class="search-box" style="padding: 2px 30px;" />
+
+                    <!-- Clear Button -->
+                    <button *ngIf="searchText" id="clear-button" (click)="clearSearch()" class="clear-btn">
+                        &#10005;
+                    </button>
+                </div>
+            </div>
+        </ng-template>
+
+        <!-- Grouped Header -->
+        <ng-template pTemplate="header">
+            <tr>
+                <th rowspan="2" id="top-header" pResizableColumn>SNo</th>
+                <th colspan="2" id="top-header" pResizableColumn>Employee Info</th>
+                <th colspan="4" id="top-header" pResizableColumn>Shift Time</th>
+
+                <th colspan="3" id="top-header" pResizableColumn>Attendance</th>
+                <th colspan="4" id="top-header" pResizableColumn>Employee Details</th>
+            </tr>
+            <tr>
+
+                <th id="header-style" pResizableColumn>Code</th>
+                <th id="header-style" pResizableColumn>Name</th>
+                <th id="header-style" pResizableColumn>Card No</th>
+
+                <th id="header-style" pResizableColumn>Shift Start Time</th>
+                <th id="header-style" pResizableColumn>Shift End Time</th>
+                <th id="header-style" pResizableColumn>Attendance Status</th>
+                <th id="header-style" pResizableColumn>In Time</th>
+                <th id="header-style" pResizableColumn>Out Time</th>
+                <th id="header-style" pResizableColumn>Over Time</th>
+                <th id="header-style" pResizableColumn>Department</th>
+                <th id="header-style" pResizableColumn>Designation</th>
+
+            </tr>
+        </ng-template>
+
+        <!-- Table Body -->
+        <ng-template pTemplate="body" let-employee let-i="rowIndex">
+            <tr>
+                <td style="text-align: center;">{{ i + 1 }}</td>
+                <td>{{ employee.code }}</td>
+                <td>{{ employee.name }}</td>
+                <td>{{ employee.cardNo }}</td>
+                <td>{{ employee.shiftStart }}</td>
+                <td>{{ employee.shiftEnd }}</td>
+                <td>{{ getAttendanceStatus(employee) }}</td>
+                <td>{{ employee.inTime }}</td>
+                <td>{{ employee.outTime }}</td>
+                <td>{{ employee.overTime }}</td>
+                <td>{{ employee.department }}</td>
+                <td>{{ employee.designation }}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

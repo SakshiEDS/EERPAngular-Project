@@ -1,0 +1,77 @@
+<div *ngIf="canAttendanceCorrection">
+    <p-toast></p-toast>
+
+
+
+    <p-dialog header="Attendance Correction" id="p-dialog" [(visible)]="visible" [modal]="true"
+        [style]="{ maxWidth: '1200px' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [draggable]="false"
+        [resizable]="false">
+
+        <form>
+            <div class="employee-master-container">
+                <div class="section-container">
+                    <div class="form-grid" style="padding-bottom: 0px;">
+                        <div class="form-column-left">
+                            <div class="form-field">
+                                <label>Employee Name <span class="required">*</span></label>
+                                <!-- <p-dropdown [options]="employeeNames" [(ngModel)]="selectedEmployee" optionLabel="name"
+                                    optionValue="code" placeholder="Select Employee"
+                                    [ngModelOptions]="{standalone: true}"></p-dropdown> -->
+                                <select id="employeeSelect" [(ngModel)]="selectedEmployee"
+                                    [ngModelOptions]="{standalone: true}">
+                                    <option *ngFor="let employee of employeeNames" [value]="employee.code">{{
+                                        employee.name }}</option>
+                                </select>
+                            </div>
+
+
+                            <div class="form-field">
+                                <label>Date <span class="required">*</span></label>
+                                <input id="LeaveRequestDate" type="date" [(ngModel)]="LeaveRequestDate"
+                                    [ngModelOptions]="{standalone: true}" />
+                            </div>
+
+
+                            <div class="form-field">
+                                <label>In/Out time <span class="required">*</span></label>
+                                <!-- <p-dropdown [options]="inOutOptions" [(ngModel)]="selectedInOutTime"
+                                    [ngModelOptions]="{standalone: true}" placeholder="Select In/Out Time">
+                                </p-dropdown> -->
+                                <select id="inOutSelect" [(ngModel)]="selectedInOutTime"
+                                    [ngModelOptions]="{standalone: true}">
+                                    <option *ngFor="let option of inOutOptions" [value]="option.value">{{ option.label
+                                        }}</option>
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-field">
+                                <label>Time <span class="required">*</span></label>
+                                <input type="time" [(ngModel)]="selectedTime" [ngModelOptions]="{standalone: true}" />
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="action-buttons">
+                <p-button type="submit" [label]="isSubmitting ? 'Submitting...' : 'Update'" icon="pi pi-save"
+                    styleClass="p-button-primary" [disabled]="isSubmitting" (click)="submitAttendanceCorrection()">
+                </p-button>
+
+                <p-button (click)="hideDialog()" label="Exit" icon="pi pi-times"
+                    styleClass="p-button-secondary"></p-button>
+            </div> -->
+
+            <div class="action-buttons">
+                <p-button type="submit" [disabled]="isSubmitting" label="Update" id="SubmitBtn" icon="pi pi-save"
+                    styleClass="p-button-primary" (click)="submitAttendanceCorrection()"></p-button>
+                <p-button (click)="hideDialog()" label="Exit" id="ExitBtn" icon="pi pi-times"
+                    styleClass="p-button-secondary"></p-button>
+            </div>
+        </form>
+
+    </p-dialog>
+</div>

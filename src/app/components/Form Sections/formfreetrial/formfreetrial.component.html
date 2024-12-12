@@ -1,0 +1,101 @@
+<p-toast></p-toast>
+
+<div class="form-container">
+    <h2 class="heading">You're Next 60 Seconds Away From Your Free Trial</h2>
+    <div class="form-content">
+        <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+            <div class="field">
+                <label>Organization Name</label>
+                <input type="text" pInputText formControlName="organizationName" placeholder="Organization Name"
+                    id="form-style" />
+            </div>
+
+            <div class="field" style="margin-top: 5px;">
+                <label>Contact Person</label>
+                <div class="flex" style="display: flex;">
+                    <p-dropdown [options]="titleOptions" placeholder="Mr." optionLabel="label"
+                        styleClass="w-full md:w-14rem" id="form-drop-down"></p-dropdown>
+                    <input type="text" pInputText formControlName="firstName" id="form-style" placeholder="First Name"
+                        style="margin-right: 10px;" />
+                    <input type="text" pInputText formControlName="lastName" placeholder="Last Name" id="form-style" />
+                </div>
+            </div>
+
+            <!-- Hidden Field -->
+            <div class="field" style="display: none;">
+                <label>Contact Person (Hidden)</label>
+                <input type="text" pInputText formControlName="organizationContactPerson" id="form-style" />
+            </div>
+
+            <div class="field">
+                <label>Email (User ID)</label>
+                <input type="email" pInputText formControlName="organizationMail" id="form-style" />
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); column-gap: 30px;">
+                <div class="field">
+                    <label for="contactType">Contact Type</label>
+                    <p-dropdown formControlName="organizationCountyCode" [options]="contactTypes"
+                        placeholder="Select Country" id="p-dropdown" optionLabel="label"
+                        styleClass="w-full"></p-dropdown>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="contactNumber">Contact Number</label>
+                <input type="number" pInputText formControlName="organizationMobileNo"
+                    placeholder="Enter Contact Number" id="form-style" class="w-full" />
+            </div>
+
+            <div class="field">
+                <label>Password</label>
+                <p-password [toggleMask]="true" id="pswrd-drop" styleClass="w-full" [feedback]="false"
+                    formControlName="password"></p-password>
+            </div>
+
+            <div class="field">
+                <label>Confirm Password</label>
+                <p-password [toggleMask]="true" id="pswrd-drop" styleClass="w-full" [feedback]="false"
+                    formControlName="confirmPassword"></p-password>
+            </div>
+
+            <!-- Hidden Final Password Field -->
+            <input type="hidden" formControlName="organizationPassword" />
+
+            <div class="field">
+                <label>Firm Type</label>
+                <p-dropdown formControlName="organizationType" [options]="firmTypes"
+                    placeholder="Partnership/Proprietorship/Other" id="p-dropdown" styleClass="w-full"></p-dropdown>
+            </div>
+
+            <div class="field">
+                <label>Business Type</label>
+                <p-dropdown formControlName="organizationBusinessType" [options]="businessTypes"
+                    placeholder="Books_Stationary" id="p-dropdown" styleClass="w-full"></p-dropdown>
+            </div>
+
+            <div class="field">
+                <label>Partner Code</label>
+                <input type="number" pInputText formControlName="organizationPartnerCode" id="form-style" />
+            </div>
+
+            <div class="submit-button">
+                <button pButton type="submit" label="Submit" [disabled]="isSubmitting" id="form-style"></button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- OTP Verification Section -->
+<!-- OTP Verification Section -->
+<div *ngIf="otpSent" class="otp-section" style="    max-width: 600px;
+    margin: 80px auto;">
+    <h3>Enter OTP</h3>
+    <form [formGroup]="otpForm" (ngSubmit)="verifyOtp()">
+        <input type="text" pInputText placeholder="Enter OTP" formControlName="otp" />
+        <div class="otp-buttons">
+            <button pButton type="submit" label="Verify OTP" [disabled]="otpForm.invalid || isVerifyingOtp"
+                [disabled]="isSubmitting"></button>
+            <button pButton type="button" label="Resend OTP" (click)="resendOtp()" [disabled]="isSubmitting"></button>
+        </div>
+    </form>
+</div>

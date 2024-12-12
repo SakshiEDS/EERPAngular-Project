@@ -1,0 +1,60 @@
+<p-toast></p-toast>
+
+<p-dialog [header]="'Role Permission Details'" [style]="{'max-width': 'none','height':'50%'}" [draggable]="false"
+    [resizable]="false" [modal]="true" [closable]="true" [(visible)]="isDialogVisible" [class.shift-dialog]="">
+    <ng-container>
+        <div class="form-column-left">
+            <!-- Role Permission ID Field -->
+            <div class="form-field">
+                <label>Role Permission ID</label>
+                <input type="number" [(ngModel)]="rolePermissionId" [disabled]="rolePermissionId !== null" />
+            </div>
+
+            <!-- Role Permission Name Field -->
+            <div class="form-field">
+                <label>Role Permission Name</label>
+                <input type="text" [(ngModel)]="rolePermissionName" />
+            </div>
+
+            <!-- Permission List Field -->
+            <div class="form-field" *ngIf="rolePermissionId !== 0">
+                <label>Permission List</label>
+                <div *ngFor="let permission of permissions">
+                    <input type="checkbox" [value]="permission.value" [name]="permission.label"
+                        (change)="togglePermission($event, permission)"
+                        [checked]="selectedPermissions.includes(permission.description)" [disabled]="false" />
+                    <!-- Disabled if rolePermissionId is not 0 -->
+                    <label>{{ permission.description }}</label>
+                </div>
+            </div>
+
+            <div class="form-field" *ngIf="rolePermissionId === 0">
+                <label>Permission List</label>
+                <div *ngFor="let permission of permissions">
+                    <input type="checkbox" [value]="permission.value" [name]="permission.label"
+                        (change)="togglePermission($event, permission)"
+                        [checked]="selectedPermissions.includes(permission.description)" [disabled]="false" />
+                    <!-- Not disabled, user can select for new role -->
+
+                    <label>{{ permission.description }}</label>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </ng-container>
+
+    <p-footer
+        style="height: 26px; align-items: center; display: flex; justify-content: end; bottom: 0; position: absolute; width: 100%; padding: 5px 7px 5px 3px; background-color: #164e7f;">
+        <button pButton label="Save" icon="pi pi-save" class="p-button-primary"
+            style="margin-right: 5px; padding: 3px 1px; padding-right: 6px; font-size: 14px;"
+            (click)="saveRolePermission($event)" [disabled]="isSubmitting"> <!-- Bind to saveRolePermission method -->
+        </button>
+
+        <button pButton label="Delete" icon="pi pi-trash" class="p-button-danger"
+            style="padding: 3px 1px; font-size: 14px; padding-right: 6px;">
+        </button>
+    </p-footer>
+</p-dialog>

@@ -1,0 +1,169 @@
+:host ::ng-deep {
+    .form-grid {
+        // display: grid;
+        // grid-template-columns: 1fr 1fr;
+        // gap: 1rem;
+        padding: 1rem;
+    }
+
+
+    .form-column-left {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .form-column-right {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .form-field {
+        display: flex;
+        justify-content: space-between;
+        /* Space between label and input */
+        align-items: center;
+        gap: 1rem;
+
+        label {
+            font-weight: bold;
+            text-align: left;
+            flex: 1;
+        }
+
+        input,
+        .p-dropdown,
+        .p-calendar {
+            flex: 2;
+            /* Allow the input to take more space */
+            width: 100%;
+            height: 21px;
+            /* Reduce height of input fields */
+            padding: 5px;
+            /* Reduce padding */
+        }
+
+        /* Reduce height of textareas */
+        textarea {
+            height: 30px;
+            /* Shorten the height of the textarea */
+            padding: 5px;
+            /* Reduce padding */
+        }
+    }
+
+
+    .action-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 1rem;
+        background: #f8f9fa;
+
+        .p-button {
+            min-width: 100px;
+        }
+    }
+
+    /* General dialog styles */
+    .p-dialog .p-dialog-header {
+        background-color: #1E567E;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+    }
+
+    .p-dialog .p-dialog-header .p-button {
+        color: #fff;
+        /* White icon color */
+        border: none;
+        background-color: transparent;
+        /* Transparent button */
+    }
+
+    .form-field label {
+        font-size: 13px;
+    }
+
+    .action-buttons .p-button {
+        padding: 3px 11px;
+        font-size: 15px;
+    }
+
+    .action-buttons {
+        position: sticky;
+        bottom: 0px;
+        justify-content: start;
+    }
+
+    .custom-button span.p-button-label {
+        font-weight: 100 !important;
+        margin-left: 7px;
+        font-size: 12px;
+    }
+
+    .custom-button {
+        background-color: var(--main-background-color);
+        border-color: var(--main-border-color);
+        padding: 3px 10px;
+        color: var(--default-color);
+        // border-radius: 0%;
+        border-radius: 6px;
+    }
+
+    .custom-button .pi {
+        font-size: 12px !important;
+    }
+
+
+    #SubmitBtn .p-button {
+        padding: 4px 10px;
+        border: none;
+        background-color: var(--ModalSubmitBtn-background-color);
+        color: var(--ModalSubmitBtn-color);
+    }
+
+    #SubmitBtn .p-button span {
+        font-size: 13px;
+    }
+
+
+    #SubmitBtn .p-button span span {
+        font-size: 13px;
+        font-weight: 200;
+    }
+
+
+    #SubmitBtn .p-button-label {
+        font-size: 13px;
+        font-weight: 200;
+    }
+
+
+    #ExitBtn .p-button {
+        padding: 4px 10px;
+        border: none;
+        background-color: var(--ModalExitBtn-background-color);
+        color: var(--ModalExitBtn-color);
+        margin-top: 0px;
+    }
+
+    #ExitBtn .p-button span {
+        font-size: 13px;
+    }
+
+
+    #ExitBtn .p-button span label {
+        font-size: 13px;
+        font-weight: 200;
+    }
+
+    #ExitBtn .p-button-label {
+        font-size: 13px;
+        font-weight: 100;
+    }
+
+}

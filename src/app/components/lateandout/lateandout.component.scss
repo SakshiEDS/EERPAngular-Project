@@ -1,0 +1,107 @@
+/* General Dialog Styling */
+.dialog-content {
+    padding: 0 15px;
+}
+
+.section {
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.section-title {
+    color: #1d4ed8;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 0 10px;
+    margin: 0;
+}
+
+.field-label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.field-input {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+}
+
+.required {
+    color: red;
+}
+
+.switch-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.switch-label {
+    font-size: 13px;
+}
+
+/* Grid Layout for Sections */
+.p-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.p-col-3 {
+    flex: 0 0 23%;
+    max-width: 23%;
+}
+
+.p-col-6 {
+    flex: 0 0 48%;
+    max-width: 48%;
+}
+
+/* Footer Button Styling */
+.dialog-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 15px;
+}
+
+.action-button {
+    margin-right: 10px;
+}
+
+.open-dialog-btn {
+    margin-top: 15px;
+}
+
+#DeleteBtn {
+    padding: 3px 1px;
+    font-size: 14px;
+    padding-right: 6px;
+    border: none;
+    background-color: var(--ModalDeleteBtn-background-color);
+    color: var(--ModalDeleteBtn-color);
+}
+
+::ng-deep #DeleteBtn span {
+    font-weight: 200;
+}
+
+#SubmitBtn {
+    margin-right: 5px;
+    font-weight: 300;
+    padding: 3px 1px;
+    padding-right: 6px;
+    font-size: 14px;
+    border: none;
+    background-color: var(--ModalSubmitBtn-background-color);
+    color: var(--ModalSubmitBtn-color);
+}
+
+::ng-deep #SaveBtn span {
+    font-weight: 200;
+}

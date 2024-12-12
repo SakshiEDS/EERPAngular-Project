@@ -1,0 +1,70 @@
+<p-dialog [(visible)]="displayEditDialog" [header]="context.label" [style]="{width: '400px'}" [modal]="true"
+    [closable]="true" [class.shift-dialog]="context.label === 'Shift'" [draggable]="false" [resizable]="false"
+    id="dialog">
+
+    <ng-container *ngIf="context.label !== 'Shift'">
+        <div class="p-field">
+            <label for="sno">Code</label>
+            <input id="sno" type="text" pInputText [(ngModel)]="editItem.sno" readonly />
+        </div>
+
+        <div class="p-field" style="margin: 5px 1px;">
+            <label for="name">{{context.label}} Name</label>
+            <input id="name" type="text" pInputText [(ngModel)]="editItem.name"
+                placeholder="Enter {{context.label}} Name" />
+        </div>
+
+        <div class="p-field" id="ActiveStatus">
+            <label for="activeStatus">Active Status</label>
+            <p-checkbox id="activeStatus" [(ngModel)]="editItem.activeStatus" binary="true"></p-checkbox>
+        </div>
+    </ng-container>
+
+
+    <ng-container *ngIf="context.label === 'Shift'">
+        <div class="p-field">
+            <label for="name" style="margin-bottom: 1px !important;">Name</label>
+            <input id="name" type="text" pInputText [(ngModel)]="editItem.name" placeholder="Enter Name" />
+        </div>
+
+        <div class="p-field" style="margin: 5px 1px;">
+            <label for="code" style="margin-bottom: 1px !important;">Code</label>
+            <input id="code" type="text" pInputText [(ngModel)]="editItem.sno" readonly />
+        </div>
+
+        <!-- Shift In Time Field -->
+        <div class="p-field" style="margin: 5px 1px;" *ngIf="context.label.toLowerCase() === 'shift'">
+            <label for="shiftInTime" style="margin-bottom: 1px !important;">Shift In</label>
+            <input type="time" id="shiftInTime" [(ngModel)]="editItem.shiftInTime" />
+        </div>
+
+        <!-- Shift Out Time Field -->
+        <div class="p-field" style="margin: 5px 1px;" *ngIf="context.label.toLowerCase() === 'shift'">
+            <label for="shiftOutTime" style="margin-bottom: 1px !important;">Shift Out</label>
+            <input type="time" id="shiftOutTime" [(ngModel)]="editItem.shiftOutTime" />
+        </div>
+
+
+        <div class="p-field"
+            style="margin: 5px 1px; margin: 5px 1px; margin-bottom: 32px; display: flex; margin-top: 9px; justify-content: space-between;">
+            <label for="activeStatus">Active Status</label>
+            <p-checkbox id="activeStatus" [(ngModel)]="editItem.activeStatus" binary="true"></p-checkbox>
+        </div>
+    </ng-container>
+
+
+    <p-footer id="footer-div">
+        <div class="dialog-footer">
+            <button pButton id="SubmitBtn" label="Save" icon="pi pi-save" class="p-button-primary"
+                (click)="saveEdit($event)"
+                style="margin-right: 5px; padding: 3px 1px; padding-right: 6px; font-size: 14px;"
+                [disabled]="isSubmitting">
+            </button>
+            <button pButton label="Delete" id="DeleteBtn" icon="pi pi-trash" (click)="deleteItem(editItem.sno,$event)"
+                class="p-button-danger" [disabled]="isSubmitting"
+                style="padding: 3px 1px; font-size: 14px; padding-right: 6px;"></button>
+
+
+        </div>
+    </p-footer>
+</p-dialog>

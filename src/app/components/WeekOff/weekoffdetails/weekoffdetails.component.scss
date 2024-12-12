@@ -1,0 +1,88 @@
+:host ::ng-deep {
+    .p-progressbar {
+        height: .5rem;
+        background-color: #D8DADC;
+
+        .p-progressbar-value {
+            background-color: #607D8B;
+        }
+    }
+}
+
+html {
+    font-size: 14px;
+}
+
+#body {
+    height: var(--body-height) !important;
+    margin-left: var(--body-margin-left) !important;
+    // padding-left: var(body-padding-left);
+    padding-left: var(--body-padding-left);
+    padding-right: var(--body-padding-right);
+}
+
+
+.card {
+    background: var(--surface-card);
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+/* Flex and alignment helper classes */
+.flex {
+    display: flex;
+}
+
+.justify-content-between {
+    justify-content: space-between;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.p-element .p-paginator-rpp-options {
+    display: flex;
+    align-items: center;
+}
+
+.custom-dropdown {
+    width: 250px;
+    /* Adjust the width as per your requirement */
+}
+
+#custom-save-button {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 80px;
+    font-size: 18px;
+    font-weight: 100;
+    padding: 4px 10px;
+}
+
+::ng-deep #custom-save-button .p-button-label {
+    font-size: 14px;
+    font-weight: 200;
+}
+
+.custom-save-button .pi {
+    font-size: 24px;
+    /* Increased icon size */
+}
+
+.toppest-header {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    font-family: 'Roboto Condensed', sans-serif;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--SectionTitleNav-color);
+    background-color: var(--SectionTitleNav-background-color);
+    padding: 2px 0;
+}

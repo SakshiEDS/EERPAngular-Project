@@ -1,0 +1,59 @@
+<p-toast></p-toast>
+
+<div style="padding: 8px; display: flex; justify-content: end; padding-right: 0px;">
+    <p-button *ngIf="canAddHoliday" (click)="showDialog()" label="Create New Holiday" icon="pi pi-save" iconPos="left"
+        styleClass=" custom-button"></p-button>
+</div>
+
+<p-dialog header="Employee Holiday" [(visible)]="visible" [modal]="true" [style]="{ width:'30%' }"
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [draggable]="true" [resizable]="false">
+
+    <form [formGroup]="holidayForm" (ngSubmit)="onSubmit($event)">
+        <div class="employee-master-container">
+            <div class="section-container">
+                <div class="form-grid">
+
+                    <!-- Left Column (labels and input fields) -->
+                    <div class="form-column-left">
+                        <!-- Event Name -->
+                        <div class="form-field">
+                            <label>Name <span class="required">*</span></label>
+                            <input type="text" formControlName="eventName" />
+                        </div>
+
+                        <!-- From Date -->
+                        <div class="form-field">
+                            <label>From Date <span class="required">*</span></label>
+                            <input type="date" formControlName="dateFrom" />
+                        </div>
+
+                        <!-- To Date -->
+                        <div class="form-field">
+                            <label>To Date <span class="required">*</span></label>
+                            <input type="date" formControlName="dateTo" />
+                        </div>
+
+                        <!-- Checkboxes -->
+                        <div class="form-field checkboxes-container">
+                            <label>Is Holiday</label>
+                            <p-checkbox binary="true" formControlName="isHoliday"></p-checkbox>
+
+                            <label>Is Working</label>
+                            <p-checkbox binary="true" formControlName="isWorkingDay"></p-checkbox>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <p-button type="submit" label="Save" id="SubmitBtn" icon="pi pi-save" styleClass="p-button-primary"
+                [disabled]="isSubmitting">
+            </p-button>
+
+            <p-button (click)="hideDialog()" label="Exit" id="ExitBtn" icon="pi pi-times"
+                styleClass="p-button-secondary"></p-button>
+        </div>
+    </form>
+
+</p-dialog>

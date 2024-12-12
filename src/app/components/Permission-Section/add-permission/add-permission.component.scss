@@ -1,0 +1,289 @@
+:host ::ng-deep {
+
+    .employee-master-container {
+        .p-dialog {
+            .p-dialog-header {
+                background: #1a4d80;
+                color: white;
+                padding: 0.5rem 1rem;
+            }
+
+            .p-dialog-content {
+                padding: 0;
+            }
+        }
+    }
+
+    .section-container {
+        margin-bottom: 1rem;
+
+        .section-header {
+            background: #1a4d80;
+            color: white;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+
+            i {
+                font-size: 1.2rem;
+            }
+        }
+    }
+
+    .form-grid {
+        display: grid;
+        // grid-template-columns: 1fr 1fr;
+        /* Two-column layout */
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+
+
+
+    .form-column-left {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .form-column-right {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .form-field {
+        display: flex;
+        justify-content: space-between;
+        /* Space between label and input */
+        align-items: center;
+        gap: 1rem;
+
+        label {
+            font-weight: bold;
+            text-align: left;
+            flex: 1;
+        }
+
+        input,
+        .p-dropdown,
+        .p-calendar {
+            flex: 2;
+            /* Allow the input to take more space */
+            width: 100%;
+            height: 21px;
+            /* Reduce height of input fields */
+            padding: 5px;
+            /* Reduce padding */
+        }
+
+        /* Reduce height of textareas */
+        textarea {
+            height: 30px;
+            /* Shorten the height of the textarea */
+            padding: 5px;
+            /* Reduce padding */
+        }
+    }
+
+    .photo-container {
+        text-align: center;
+        margin-bottom: 1rem;
+
+        img {
+            width: 150px;
+            height: 150px;
+            border: 1px solid #ddd;
+            margin-bottom: 0.5rem;
+        }
+    }
+
+    .address-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .action-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        // padding: 1rem;
+        padding-bottom: 12px;
+        background: #f8f9fa;
+
+        .p-button {
+            min-width: 100px;
+        }
+    }
+
+    #SubmitBtn {
+        padding: 3px 7px;
+        font-size: 15px;
+    }
+
+    #ExitBtn {
+        padding: 3px 7px;
+        font-size: 15px;
+    }
+
+    /* Style for the entire table */
+    /* Increase table row height and size */
+    .increased-row-size .p-datatable-thead th,
+    .increased-row-size .p-datatable-tbody td {
+        font-size: 16px;
+        /* Increase font size */
+        padding: 12px;
+        /* Increase padding to make the rows taller */
+        text-align: center;
+        /* Center text inside cells */
+        height: 50px;
+    }
+
+    .increased-row-size .p-inputtext {
+        font-size: 16px;
+        padding: 8px;
+        width: 100%;
+    }
+
+    .add-lines-button button {
+        font-size: 16px;
+        padding: 8px 16px;
+    }
+
+    .checkbox-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+
+    /* General dialog styles */
+    .p-dialog .p-dialog-header {
+        background-color: #1E567E;
+        /* Dark blue header background */
+        color: #fff;
+        /* White header text */
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 5px 7px;
+    }
+
+    #pn_id_5_header {
+        font-size: 15px;
+        font-weight: 200;
+    }
+
+    .p-dialog .p-dialog-header .p-button {
+        color: #fff;
+        /* White icon color */
+        border: none;
+        background-color: transparent;
+        /* Transparent button */
+    }
+
+    .p-dialog .p-dialog-title {
+        font-size: 1.25em;
+        font-weight: bold;
+    }
+
+    .p-dialog .p-dialog-content {
+        // padding: 2px 7px;
+        overflow-x: hidden;
+    }
+
+    /* Input fields styling */
+    .p-field label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+    }
+
+    .form-field label {
+        font-size: 13px;
+    }
+
+    .p-field input,
+    .p-field select {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 0.9em;
+    }
+
+
+    #Applicable {
+        height: 27px;
+    }
+
+    #leaveType {
+        height: 27px;
+    }
+
+    #Cashable {
+        height: 27px;
+
+    }
+
+    .required {
+        color: red;
+    }
+
+    #Transferable {
+        height: 27px;
+
+    }
+
+    .custom-button span.p-button-label {
+        font-weight: 100 !important;
+        margin-left: 7px;
+        font-size: 12px;
+    }
+
+    .custom-button {
+        background-color: #164e7f;
+        border-color: #ddd;
+        padding: 3px 10px;
+        color: #fff;
+        border-radius: 0%;
+    }
+
+    .custom-button .pi {
+        font-size: 12px !important;
+    }
+
+
+
+
+
+
+
+
+
+    .input-container {
+        position: relative;
+    }
+
+    .clear-button {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        font-size: 18px;
+        cursor: pointer;
+    }
+
+    .clear-button:hover {
+        color: red;
+    }
+
+
+}

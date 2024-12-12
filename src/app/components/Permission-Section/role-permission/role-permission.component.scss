@@ -1,0 +1,10 @@
+.custom-dialog {
+    width: 800px !important;
+    max-width: 90%;
+    /* Makes it responsive */
+}
+
+.custom-dropdown .p-dropdown-panel {
+    z-index: 9999 !important;
+    /* Adjust the value as needed */
+}

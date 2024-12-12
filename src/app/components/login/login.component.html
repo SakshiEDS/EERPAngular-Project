@@ -1,0 +1,112 @@
+<div class="container">
+    <div class="login-panel">
+        <div style="border: 1px solid; padding: 50px 40px; width: 90%;">
+            <div style="display: flex; justify-content: space-between; width: 100%; padding-bottom: 16px;">
+                <div><img src="http://www.edsindia.in/images/logo.png" style="width: 55px;transform: rotate(-1deg);">
+                </div>
+                <div><img src="https://solution.alignbooks.com/assets/images/Madeinindia.png"
+                        style="width: 55px;transform: rotate(-0.5deg);"></div>
+            </div>
+
+            <div class="logo-section">
+                <p id="Signin">Sign in</p>
+            </div>
+
+            <div class="toggle-buttons">
+                <button [class.active]="activeCard === 'card2'" (click)="switchCard('card2')"
+                    class="toggle-btn">Corporate Login</button>
+                <button [class.active]="activeCard === 'card1'" (click)="switchCard('card1')" class="toggle-btn">User
+                    Login</button>
+            </div>
+
+            <!-- Card 1: Full Form -->
+            <div class="card" *ngIf="activeCard === 'card1'">
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input id="email" type="text" pInputText formControlName="email"
+                            placeholder="Enter your email" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <p-password id="password" formControlName="password" [feedback]="false"></p-password>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="organisationCode">Organisation Code</label>
+                        <input id="organisationCode" type="text" pInputText formControlName="organizationCode"
+                            placeholder="Enter your organisation code" />
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn-login">Sign In</button>
+                        <button type="button" class="btn-forgot" (click)="onForgotPassword()">Forgot Password</button>
+                    </div>
+                    <p style="margin-top: 8px;">New to EDSERP? <a routerLink="/organisation">Create an account</a></p>
+
+                    <footer class="footer">
+                        <p>Privacy · Security</p>
+                        <p>© 2024 EDS. All rights reserved.</p>
+                    </footer>
+                </form>
+            </div>
+
+            <!-- Card 2: Simple Form -->
+            <div class="card" *ngIf="activeCard === 'card2'">
+                <form class="login-form">
+                    <div class="form-group">
+                        <label for="email">Email or User ID</label>
+                        <input type="text" id="email" placeholder="Enter your email or user ID" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter your password" required>
+                    </div>
+
+                    <button type="submit" routerLink="/dashboard" class="btn-login">Sign In</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-panel">
+        <h3>About ERP</h3>
+        <p>Our ERP Employee Management System streamlines the leave process, allowing employees to easily request
+            various types of leave and check their available balances. Once submitted, managers receive notifications to
+            approve or reject requests based on company policies.
+        </p>
+
+        <h3 style="margin-top: 10px;">Expertise in Our Domain</h3>
+        <p>
+            Managers can efficiently review all leave requests through a centralized dashboard, ensuring proper
+            staffing. Automated notifications keep both employees and managers updated, simplifying workforce management
+            and reducing administrative tasks.
+        </p>
+
+        <div class="image" style="margin-top: 30px;">
+            <iframe id="videoIframe" width="560" height="315"
+                src="https://www.youtube.com/embed/nxL5mKb4mHQ?mute=1&amp;loop=1&amp;playlist=nxL5mKb4mHQ"
+                frameborder="0" allowfullscreen="">
+            </iframe>
+        </div>
+    </div>
+
+    <p-dialog [(visible)]="displayForgotPasswordDialog" [modal]="true" [closable]="false" header="Reset Password">
+        <div class="form-group">
+            <label for="otp">OTP</label>
+            <input id="otp" type="text" pInputText [(ngModel)]="otp" placeholder="Enter OTP">
+        </div>
+
+        <div class="form-group">
+            <label for="newPassword">New Password</label>
+            <input id="newPassword" type="password" pInputText [(ngModel)]="newPassword"
+                placeholder="Enter New Password">
+        </div>
+
+        <div class="form-group">
+            <button type="button" pButton label="Submit" (click)="onResetPassword(otp, newPassword)"></button>
+        </div>
+    </p-dialog>
+</div>

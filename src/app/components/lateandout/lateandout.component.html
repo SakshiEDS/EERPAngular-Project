@@ -1,0 +1,103 @@
+<p-dialog header="Employee Rule" [(visible)]="isDialogVisible" [modal]="true" [draggable]="false" [resizable]="false"
+    [style]="{ 'max-width': 'none', width: '55%' }" [closable]="true">
+    <div class="dialog-content">
+        <!-- Basic Section -->
+        <fieldset class="section">
+            <legend class="section-title">Basic</legend>
+            <div class="p-grid p-align-center">
+                <!-- Name Field -->
+                <div class="p-col-6">
+                    <label for="name" class="field-label">
+                        Name <span class="required">*</span>
+                    </label>
+                    <input id="name" type="text" pInputText class="field-input" placeholder="Enter Name"
+                        [(ngModel)]="name" />
+                </div>
+                <!-- Code Field -->
+                <div class="p-col-3">
+                    <label for="code" class="field-label">Code</label>
+                    <input id="code" type="text" pInputText class="field-input" [(ngModel)]="sno" [readonly]="true" />
+
+                </div>
+                <!-- Inactive Switch -->
+                <div class="p-col-3 switch-container">
+                    <label for="inactive" class="switch-label">Inactive</label>
+                    <p-checkbox id="activeStatus" [(ngModel)]="activeStatus" binary="true"></p-checkbox>
+                </div>
+            </div>
+        </fieldset>
+
+        <!-- Deduction for Late (Minutes) Section -->
+        <fieldset class="section">
+            <legend class="section-title">Deduction For Late (Minutes)</legend>
+            <div class="p-grid">
+                <!-- Slab 1 -->
+                <div class="p-col-3">
+                    <label class="field-label">Slab 1</label>
+                    <input type="number" pInputText class="field-input" [(ngModel)]="slab1" placeholder="Upto" />
+                </div>
+                <div class="p-col-3">
+                    <label class="field-label">Points</label>
+                    <input type="number" pInputText class="field-input" [(ngModel)]="points1" />
+                </div>
+
+                <!-- Monthly Allowed Points -->
+                <div class="p-col-3">
+                    <label class="field-label">Monthly Allowed Points</label>
+                    <input type="number" pInputText class="field-input" [(ngModel)]="monthlyAllowedPoints" />
+                </div>
+                <div class="p-col-3">
+                    <label class="field-label">Points for on day Deduction</label>
+                    <input type="number" pInputText class="field-input" [(ngModel)]="onDayDeductionPoints" />
+                </div>
+
+                <!-- Slab 2 -->
+                <div class="p-col-3">
+                    <label class="field-label">Slab 2</label>
+                    <input type="number" pInputText class="field-input" [(ngModel)]="slab2" placeholder="Upto" />
+                </div>
+                <div class="p-col-3">
+                    <label class="field-label">Points</label>
+                    <input type="number" pInputText class="field-input" [(ngModel)]="points2" />
+                </div>
+
+                <!-- Slab 3 -->
+                <div class="p-col-3">
+                    <label class="field-label">Slab 3</label>
+                    <input type="number" pInputText class="field-input" [(ngModel)]="slab3" placeholder="Upto" />
+                </div>
+                <div class="p-col-3">
+                    <label class="field-label">Points</label>
+                    <input type="number" pInputText class="field-input" [(ngModel)]="points3" />
+                </div>
+
+                <!-- Slab 4 -->
+                <div class="p-col-3">
+                    <label class="field-label">Slab 4</label>
+                    <input type="number" pInputText class="field-input" [(ngModel)]="slab4" placeholder="Upto" />
+                </div>
+                <div class="p-col-3">
+                    <label class="field-label">Points</label>
+                    <input type="number" pInputText class="field-input" [(ngModel)]="points4" />
+                </div>
+            </div>
+        </fieldset>
+    </div>
+
+    <!-- Action Buttons -->
+    <!-- <div class="dialog-footer">
+        <button pButton type="button" id="SubmitBtn" label="Save" class="p-button-success action-button"
+            (click)="saveData()" [disabled]="isSubmitting"></button>
+        <button pButton type="button" id="DeleteBtn" label="Delete" class="p-button-danger action-button"
+            (click)="deleteItem(sno ?? 0)" [disabled]="isSubmitting"></button>
+
+    </div> -->
+
+    <div class="dialog-footer">
+        <button pButton type="button" id="SubmitBtn" icon="pi pi-save" label="Save"
+            class="p-button-success action-button" (click)="saveData()" [disabled]="isSubmitting"></button>
+        <button pButton type="button" id="DeleteBtn" icon="pi pi-trash" label="Delete"
+            class="p-button-danger action-button" (click)="deleteItem(sno ?? 0)" [disabled]="isSubmitting"></button>
+
+    </div>
+</p-dialog>

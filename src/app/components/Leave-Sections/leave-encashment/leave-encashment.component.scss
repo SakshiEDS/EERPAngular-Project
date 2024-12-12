@@ -1,0 +1,132 @@
+:host ::ng-deep {
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Two-column layout */
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  input {
+    border: 1px solid #d1d5db;
+  }
+
+  input,
+  textarea {
+    height: 23px;
+    padding: 5px;
+    /* Consistent padding for all inputs */
+    width: 100%;
+    /* Ensure inputs take full width */
+  }
+
+  /* Columns Styling */
+  .form-column-left,
+  .form-column-right {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  /* Form Fields */
+  .form-field {
+    display: flex;
+    justify-content: space-between;
+    /* Space between label and input */
+    align-items: center;
+    gap: 1rem;
+
+    label {
+      font-weight: bold;
+      text-align: left;
+      flex: 1;
+      font-size: 13px;
+      /* Consistent label size */
+    }
+
+    input,
+    .p-dropdown,
+    .p-calendar {
+      flex: 2;
+      /* Allow inputs to take more space */
+      width: 100%;
+      /* Ensure full width */
+    }
+
+    textarea {
+      height: 80px;
+      /* Keep textareas taller */
+      resize: vertical;
+      /* Allow only vertical resizing */
+    }
+  }
+
+  /* Field Labels */
+  .p-field label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Responsive Adjustments */
+  @media screen and (max-width: 1200px) {
+    .form-grid {
+      grid-template-columns: 1fr;
+      /* Single-column layout for medium screens */
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .form-grid {
+      grid-template-columns: 1fr;
+      /* Single-column layout for smaller screens */
+      gap: 0.5rem;
+      /* Reduce spacing between fields */
+    }
+
+    .form-field {
+      flex-direction: column;
+      /* Stack label and input vertically */
+      align-items: flex-start;
+      gap: 0.5rem;
+      /* Reduce gap for smaller screens */
+    }
+
+    label {
+      font-size: 12px;
+      /* Reduce label font size */
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      /* Ensure inputs and textareas fit parent container */
+      padding: 5px;
+      /* Consistent padding */
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .form-grid {
+      padding: 0.5rem;
+      /* Reduce padding for very small screens */
+    }
+
+    .form-field {
+      gap: 0.3rem;
+      /* Minimize gap */
+    }
+
+    label {
+      font-size: 11px;
+      /* Further reduce label font size */
+    }
+
+    input,
+    textarea {
+      height: 20px;
+      /* Reduce input and textarea height */
+    }
+  }
+}

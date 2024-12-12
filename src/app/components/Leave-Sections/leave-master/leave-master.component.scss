@@ -1,0 +1,93 @@
+html {
+    font-size: 14px;
+}
+
+// th {
+//   font-size: 12px;
+//   font-weight: 100;
+// }
+
+#header-style {
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 12px;
+    background: var(--TableTop-background-color);
+    color: var(--TableTop-color);
+}
+
+::ng-deep p-dropdown span.p-dropdown-label {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.search-box-container {
+    position: relative;
+    display: flex;
+    justify-content: end;
+}
+
+.search-box {
+    padding-right: 30px;
+}
+
+.clear-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 10px;
+    color: #999;
+}
+
+.clear-btn:hover {
+    color: #333;
+}
+
+::ng-deep .p-sortable-column-icon {
+    color: white !important;
+}
+
+
+
+.toppest-header {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    font-family: 'Roboto Condensed', sans-serif;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--SectionTitleNav-color);
+    background-color: var(--SectionTitleNav-background-color);
+    padding: 2px 0;
+}
+
+.p-datatable .p-datatable-tbody {
+    overflow-y: auto;
+}
+
+.p-datatable .p-datatable-tfoot {
+    position: sticky;
+    bottom: 0;
+    background: white;
+    z-index: 1;
+}
+
+::ng-deep #Edit-Button button {
+    background-color: transparent;
+    border: none;
+    padding: 0px;
+    color: var(--TableEditBtn-color);
+}
+
+
+
+::ng-deep #Delete-Button button {
+    background-color: transparent;
+    border: none;
+    color: var(--TableDeleteBtn-color);
+}

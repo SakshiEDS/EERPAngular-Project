@@ -1,0 +1,87 @@
+<div *ngIf="canViewUser">
+    <div class="toppest-header">
+        <div>User Management</div>
+        <!-- <p-button icon="pi pi-refresh"></p-button> -->
+        <p-button icon="pi pi-refresh"
+            [style]="{ width: '29px', height: '29px', 'border-radius': '29px', 'align-item':'center', 'display':'flex' }"
+            id="refres" styleClass="p-button-secondary">
+        </p-button>
+
+    </div>
+
+    <div id="body">
+        <p-table #dt [value]="employees" [resizableColumns]="true" columnResizeMode="expand" [paginator]="true"
+            [rows]="10" [rowsPerPageOptions]="[10, 25, 50]" styleClass="p-datatable-gridlines"
+            [reorderableColumns]="true" [tableStyle]="{'min-width': '100rem'}" [expandedRowKeys]="expandedRowKeys"
+            (onRowExpand)="onRowExpand($event)" class="card" (onRowCollapse)="onRowCollapse($event)"
+            [sortField]="sortField" [sortOrder]="sortOrder">
+
+            <!-- Caption with Search Box -->
+            <ng-template pTemplate="caption">
+                <app-create-new-users-modal style="display: flex; justify-content: end;"></app-create-new-users-modal>
+                <div class="flex justify-content-between">
+                    <div class="search-box-container">
+                        <span class="pi pi-search"
+                            style="position: absolute; top: 50%; transform: translateY(-50%); font-size: 18px; color: #888; right: 14.4%; padding: 0px 3px;"></span>
+                        <input type="text" [(ngModel)]="searchText" (input)="filterTable()" placeholder="Search..."
+                            class="search-box" style="padding: 2px 30px;" />
+                        <button *ngIf="searchText" (click)="clearSearch()" class="clear-btn"
+                            id="clear-search-Btn">&#10005;</button>
+                    </div>
+                </div>
+            </ng-template>
+
+            <!-- Grouped Header with Sortable Columns -->
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pResizableColumn pSortableColumn="SNo" id="header-style">Sno <p-sortIcon
+                            field="SNo"></p-sortIcon>
+                    </th>
+                    <th *ngIf="canUpdateUser" pResizableColumn pSortableColumn="edit" id="header-style">Edit <p-sortIcon
+                            field="edit"></p-sortIcon>
+                    </th>
+                    <th pResizableColumn pSortableColumn="loginName" id="header-style">Login Name <p-sortIcon
+                            field="loginName"></p-sortIcon></th>
+                    <th pResizableColumn pSortableColumn="fullName" id="header-style">Full Name <p-sortIcon
+                            field="fullName"></p-sortIcon></th>
+                    <th pResizableColumn pSortableColumn="email" id="header-style">Email <p-sortIcon
+                            field="email"></p-sortIcon>
+                    </th>
+                    <th pResizableColumn pSortableColumn="phoneNo" id="header-style">Phone No <p-sortIcon
+                            field="phoneNo"></p-sortIcon></th>
+                    <th pResizableColumn pSortableColumn="compCode" id="header-style">Comp_Code <p-sortIcon
+                            field="compCode"></p-sortIcon></th>
+                    <th pResizableColumn pSortableColumn="company" id="header-style">Company <p-sortIcon
+                            field="company"></p-sortIcon></th>
+                    <th pResizableColumn pSortableColumn="active" id="header-style">Active/Inactive <p-sortIcon
+                            field="active"></p-sortIcon></th>
+                    <th pResizableColumn pSortableColumn="access" id="header-style">Access <p-sortIcon
+                            field="access"></p-sortIcon></th>
+                    <th pResizableColumn pSortableColumn="status" id="header-style">Status <p-sortIcon
+                            field="status"></p-sortIcon></th>
+                </tr>
+            </ng-template>
+
+            <!-- Table Body -->
+            <ng-template pTemplate="body" let-employee let-i="rowIndex">
+                <tr style="font-size: 13px; height: 4vh;">
+                    <td style="text-align: center;">{{ i + 1 }}</td>
+                    <td *ngIf="canUpdateUser" style="padding:10px 6px;">
+                        <app-user-edit #editcomp [employeeSno]="employee.compCode"></app-user-edit>
+                        <p-button icon="pi pi-pencil" id="Edit-Button" (click)="editcomp.showDialog(employee.compCode)">
+                        </p-button>
+                    </td>
+
+                    <td style="padding-left: 5px;">{{ employee.sno }}</td> <!-- Display the sno from API -->
+                    <td style="padding-left: 5px;">{{ employee.name }}</td> <!-- Display the employee name -->
+                    <td style="padding-left: 5px;">{{ employee.email }}</td> <!-- Display the email -->
+                    <td style="padding-left: 5px;">{{ employee.phone }}</td> <!-- Display the phone number -->
+                    <td style="padding-left: 5px;">{{ employee.compCode }}</td> <!-- Display the compCode -->
+                    <td style="padding-left: 5px;">{{ employee.company }}</td> <!-- Display the company -->
+                    <td style="padding-left: 5px;">{{ employee.isPresent ? 'Yes' : 'No' }}</td>
+                    <td style="padding-left: 5px;">{{ employee.access }}</td>
+                    <td style="padding-left: 5px;">{{ employee.status }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>

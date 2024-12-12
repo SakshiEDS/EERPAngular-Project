@@ -1,0 +1,72 @@
+<div *ngIf="canViewLeave">
+    <p-toast></p-toast>
+    <div class="toppest-header">
+        <div>Leave Master</div>
+        <p-button icon="pi pi-refresh"
+            [style]="{ width: '29px', height: '29px', 'border-radius': '29px', 'align-item':'center', 'display':'flex' }"
+            id="refres" styleClass="p-button-secondary">
+        </p-button>
+    </div>
+
+    <p-table #dt [value]="employees" [(selection)]="selectedCustomers" dataKey="id" [rowHover]="true" [rows]="12"
+        [showCurrentPageReport]="true" [resizableColumns]="true" columnResizeMode="expand"
+        styleClass="p-datatable-gridlines" [rowsPerPageOptions]="[10, 25, 50]" [paginator]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0"
+        [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']">
+        <ng-template pTemplate="caption">
+            <div style="padding: 2px 16px; padding-top: 8px;">
+                <app-create-new-leave-modal style="display: flex; justify-content: end;"></app-create-new-leave-modal>
+                <div class="flex justify-content-between"
+                    style="align-items: center;margin-bottom: 5px; display: flex; justify-content: space-between; ">
+                    <p-button [outlined]="true" icon="pi pi-filter-slash" label="Clear" (onClick)="clear(dt)" />
+                    <p-iconField iconPosition="left">
+                        <p-inputIcon></p-inputIcon>
+                        <input pInputText type="text" [(ngModel)]="searchValue" (input)="applyGlobalFilter($event)"
+                            placeholder="Search" style="    padding: 1px 2px;
+                        font-size: 13px;
+                        border-radius: 0px;" />
+                    </p-iconField>
+                </div>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th pResizableColumn pSortableColumn="sno" style="width: 0%; text-align: center;" id="header-style">Sno
+                    <p-sortIcon field="sno"></p-sortIcon>
+                </th>
+                <th pResizableColumn pSortableColumn="Edit" style="width: 0%; text-align: center;" id="header-style">
+                    Edit
+                </th>
+                <th pResizableColumn pSortableColumn="Delete" style="width: 0%; text-align: center;" id="header-style">
+                    Delete</th>
+                <th pResizableColumn pSortableColumn="leaveType" id="header-style">Leave Type
+                    <p-sortIcon field="leaveType"></p-sortIcon>
+                </th>
+                <th pResizableColumn pSortableColumn="leaveDescription" id="header-style">Leave Description
+                    <p-sortIcon field="leaveDescription"></p-sortIcon>
+                </th>
+                <th pResizableColumn pSortableColumn="code" id="header-style">Code
+                    <p-sortIcon field="code"></p-sortIcon>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template id="LeaveMaster" pTemplate="body" let-employee let-i="rowIndex">
+            <tr>
+                <td style="text-align: center; font-size: 14px;">{{ i + 1 }}</td>
+                <td class="actions-column" style="padding: 10px 9px; font-size: 14px;">
+                    <p-button icon="pi pi-pencil" id="Edit-Button" (click)="editComponent.editEmployee(employee)"
+                        [disabled]="isSubmitting"></p-button>
+                </td>
+                <td class="actions-column" style="padding: 10px 9px; font-size: 14px;">
+                    <p-button icon="pi pi-trash" id="Delete-Button" class="p-button-text"
+                        (click)="deleteEmployee(employee.sno)" [disabled]="isSubmitting"></p-button>
+                </td>
+                <td style="padding: 10px 9px; font-size: 14px;">{{ employee.leaveType }}</td>
+                <td style="padding: 10px 9px; font-size: 14px;">{{ employee.leaveDescription }}</td>
+                <td style="padding: 10px 9px; font-size: 14px;">{{ employee.sno }}</td>
+
+            </tr>
+        </ng-template>
+    </p-table>
+    <app-edit-leave #editComponent></app-edit-leave>
+</div>

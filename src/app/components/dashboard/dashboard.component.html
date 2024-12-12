@@ -1,11 +1,48 @@
-<h1>Dashboard</h1>
-
-<div class="card">
-    <div class="card-head"> Dashboard </div>
-
-    <div class="card-body">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem minus eaque quod obcaecati rem sed ipsa
-        aspernatur veritatis voluptate, ab excepturi error voluptatum officia dolorem possimus libero magni? Vero
-        dolore deserunt eligendi?
+<div class="dashboard" id="body">
+    <div class="toppest-header">
+        <div class="header-title">Dashboard</div>
+        <p-button icon="pi pi-refresh"
+            [style]="{ width: '40px', height: '40px', 'border-radius': '50%', 'display': 'flex', 'align-items': 'center', 'justify-content': 'center' }"
+            id="refres" styleClass="p-button-secondary">
+        </p-button>
     </div>
+    <div class="in-time-out-time-cards" style="display: flex; justify-content: space-around;">
+        <div class="card">
+            <p class="card-title" style="margin-left: 10px;"><i class="fa fa-clock"></i> Employee In-Time</p>
+            <p class="card-value" style="margin-right: 10px;">:- 12:00 AM</p> <!-- Bind the in-time data here -->
+        </div>
+        <div class="card">
+            <p class="card-title" style="margin-left: 10px;"><i class="fa fa-clock"
+                    style="margin-right: 3px;"></i>Employee Out-Time</p>
+            <p class="card-value" style="margin-right: 10px;">:-14:00 PM</p> <!-- Bind the out-time data here -->
+        </div>
+    </div>
+
+    <div class="charts">
+        <!-- First Chart Container -->
+        <div class="chart-container">
+            <div class="chart-content">
+                <p-chart [type]="pieChartType" id="canvas" [data]="pieChartData" [options]="pieChartOptions">
+                </p-chart>
+            </div>
+            <div class="chart-label">
+                <p style="margin-top: 25px; margin-bottom: 0px;">Average of All Employees in a Month</p>
+            </div>
+        </div>
+
+        <!-- Second Chart Container -->
+        <div class="chart-container" style="padding-bottom: 0px;">
+
+            <!-- Line Chart -->
+            <div class="chart-content">
+                <p-chart type="line" [data]="chartData" [options]="chartOptions">
+                </p-chart>
+            </div>
+            <div class="chart-label">
+                <p style="margin-top: 25px; margin-bottom: 0px;">Average In-Time / Average Out-Time</p>
+            </div>
+        </div>
+    </div>
+
+
 </div>

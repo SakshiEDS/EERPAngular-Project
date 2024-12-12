@@ -1,0 +1,35 @@
+.custom-dialog {
+    width: 800px !important;
+    max-width: 90%;
+    /* Makes it responsive */
+}
+
+.custom-dropdown .p-dropdown-panel {
+    z-index: 9999 !important;
+    /* Adjust the value as needed */
+}
+
+
+#DeleteBtn {
+    border: none;
+    background-color: var(--ModalDeleteBtn-background-color);
+    color: var(--ModalDeleteBtn-color);
+}
+
+::ng-deep #DeleteBtn span {
+    font-weight: 200;
+}
+
+#SubmitBtn {
+    border: none;
+    background-color: var(--ModalSubmitBtn-background-color);
+    color: var(--ModalSubmitBtn-color);
+}
+
+::ng-deep #SaveBtn span {
+    font-weight: 200;
+}
+
+.form-field input {
+    padding: 1px;
+}

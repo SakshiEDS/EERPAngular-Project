@@ -1,0 +1,47 @@
+<p-toast></p-toast>
+
+
+<p-dialog header="Edit Holiday" [(visible)]="visible" [modal]="true" [style]="{ width: '100%', maxWidth: '33%' }"
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [draggable]="false" [resizable]="false">
+
+
+    <form [formGroup]="holidayForm">
+        <div class="employee-master-container">
+            <div class="section-container">
+                <div class="form-grid">
+
+                    <!-- Left Column (labels and input fields) -->
+                    <div class="form-column-left">
+                        <!-- Event Name -->
+                        <div class="form-field">
+                            <label>Name <span class="required">*</span></label>
+                            <input type="text" formControlName="eventName" />
+                        </div>
+
+                        <!-- From Date -->
+                        <div class="form-field">
+                            <label>Event Date <span class="required">*</span></label>
+                            <input type="date" formControlName="eventDate" />
+                        </div>
+                        <!-- Checkboxes -->
+                        <div class="form-field checkboxes-container">
+                            <label>Is Holiday</label>
+                            <p-checkbox binary="true" formControlName="isHoliday"></p-checkbox>
+
+                            <label>Is Working</label>
+                            <p-checkbox binary="true" formControlName="isWorkingDay"></p-checkbox>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <p-button type="submit" label="Save" id="SubmitBtn" icon="pi pi-save" styleClass="p-button-primary"
+                (click)="updateHoliday($event)" [disabled]="isSubmitting"></p-button>
+            <p-button (click)="hideDialog()" id="ExitBtn" label="Exit" icon="pi pi-times"
+                styleClass="p-button-secondary"></p-button>
+        </div>
+    </form>
+
+</p-dialog>

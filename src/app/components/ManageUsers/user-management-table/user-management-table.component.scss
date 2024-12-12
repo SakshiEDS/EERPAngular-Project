@@ -1,0 +1,86 @@
+html {
+    font-size: 14px;
+}
+
+th {
+    font-size: 12px;
+    font-weight: 100;
+}
+
+#body {
+    height: var(--body-height) !important;
+    margin-left: var(--body-margin-left) !important;
+    // padding-left: var(body-padding-left);
+    padding-left: var(--body-padding-left);
+    padding-right: var(--body-padding-right);
+}
+
+#header-style {
+    padding-top: 6px !important;
+    padding: 7px 5px;
+    text-align: left;
+    font-size: 12px;
+    background-color: var(--TableTop-background-color);
+    color: var(--TableTop-color);
+
+}
+
+::ng-deep p-dropdown span.p-dropdown-label {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+::ng-deep #Edit-Button button {
+    background-color: transparent;
+    border: none;
+    padding: 0px;
+    color: var(--TableEditBtn-color);
+}
+
+
+.search-box-container {
+    position: relative;
+    display: flex;
+    justify-content: end;
+}
+
+.search-box {
+    padding-right: 30px;
+}
+
+.clear-btn:hover {
+    color: #333;
+}
+
+.toppest-header {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    font-family: 'Roboto Condensed', sans-serif;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--SectionTitleNav-color);
+    background-color: var(--SectionTitleNav-background-color);
+    padding: 2px 0;
+}
+
+::ng-deep .p-sortable-column-icon {
+    color: white !important;
+}
+
+#clear-search-Btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    background-color: var(--SearchBoxClearBtn-background-color);
+    color: var(--SearchBoxClearBtn-color);
+    border-radius: 25px;
+    padding: 0px 3px;
+}

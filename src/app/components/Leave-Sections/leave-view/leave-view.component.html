@@ -1,0 +1,113 @@
+<p-dialog header="Leave Application Details" [(visible)]="modalVisible" [modal]="true" [closable]="true"
+    [style]="{ width: '70vw', maxWidth: '1200px', paddingtop: '10px', paddingleft: '13px', padding:'4px 10px' }"
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [draggable]="false" [resizable]="false">
+    <p-card>
+        <div class="p-fluid p-formgrid"
+            style="display: flex; justify-content: center; padding: 11px 10px; padding-top: 0px; overflow-y: hidden;">
+            <div style="width: 100%;">
+
+                <!-- Form Section 1 -->
+                <div class="form-grid" style="border-top: 1px solid #d6d6d6; padding-top: 15px;">
+                    <div class="form-field" style="padding-right: 10px;">
+                        <label for="LeaveRequestDate">Leave Request Date</label>
+                        <input id="LeaveRequestDate" type="date" readonly [(ngModel)]="LeaveRequestDate" pInputText />
+                    </div>
+                    <div class="form-field" style="padding-left: 10px;">
+                        <label for="RequestNo">Request No</label>
+                        <input id="RequestNo" type="text" pInputText [(ngModel)]="voucherNo" readonly />
+                    </div>
+                    <div class="form-field" style="padding-right: 10px;">
+                        <label for="employee">Employee Name <span class="required">*</span></label>
+                        <p-dropdown id="employee" [options]="employees" [(ngModel)]="selectedEmployee"
+                            (onChange)="onEmployeeSelect($event)" placeholder="Select Employee"
+                            [disabled]="isFormDisabled"></p-dropdown>
+                    </div>
+                    <div class="form-field" style="padding-left: 10px;">
+                        <label for="Manager">Manager Code</label>
+                        <input id="Manager" type="text" pInputText [(ngModel)]="managerName"
+                            [disabled]="isFormDisabled" />
+                    </div>
+                    <div class="form-field" style="padding-right: 10px;">
+                        <label for="LeaveRequestCode">Leave Request Code</label>
+                        <input id="LeaveRequestCode" type="text" pInputText [(ngModel)]="voucherNo"
+                            [disabled]="isFormDisabled" />
+                    </div>
+                </div>
+
+                <!-- Form Section 2 -->
+                <div class="form-grid" style="margin-bottom: 2px; border-top: 1px solid #d6d6d6; padding-top: 15px;">
+                    <div class="form-field" style="padding-right: 10px;">
+                        <label for="joiningDate">Joining Date</label>
+                        <input id="joiningDate" type="date" pInputText [(ngModel)]="joiningDate"
+                            [disabled]="isFormDisabled" />
+                    </div>
+                    <div class="form-field" style="padding-left: 10px;">
+                        <label for="confirmationDate">Confirmation Date <span class="required">*</span></label>
+                        <input id="confirmationDate" type="date" pInputText [(ngModel)]="confirmationDate"
+                            [disabled]="isFormDisabled" />
+                    </div>
+                    <div class="form-field" style="padding-right: 10px;">
+                        <label for="department">Department <span class="required">*</span></label>
+                        <input id="department" type="text" pInputText [(ngModel)]="department"
+                            [disabled]="isFormDisabled" />
+                    </div>
+                    <div class="form-field" style="padding-left: 10px;">
+                        <label for="designation">Designation</label>
+                        <input id="designation" type="text" pInputText [(ngModel)]="designation"
+                            [disabled]="isFormDisabled" />
+                    </div>
+                </div>
+
+                <!-- Form Section 3 -->
+                <div class="form-grid" style="margin-bottom: 1rem; border-top: 1px solid #d6d6d6; padding-top: 15px;">
+                    <div class="form-field" style="padding-right: 10px;">
+                        <label for="LeaveType">Leave Type <span class="required">*</span></label>
+                        <p-dropdown id="LeaveType" [options]="leaveCodes" [(ngModel)]="selectedLeaveCode"
+                            [disabled]="isFormDisabled" placeholder="Select"></p-dropdown>
+                    </div>
+                    <div class="form-field" style="padding-left: 10px;">
+                        <label for="fromDate">From Date</label>
+                        <input id="fromDate" [(ngModel)]="fromDate" type="date" pInputText
+                            [disabled]="isFormDisabled" />
+                    </div>
+                    <div class="form-field" style="padding-right: 10px;">
+                        <label for="toDate">To Date</label>
+                        <input id="toDate" [(ngModel)]="toDate" type="date" pInputText [disabled]="isFormDisabled" />
+                    </div>
+                    <div class="form-field" style="padding-left: 10px;">
+                        <label for="leaveIn">Leave In <span class="required">*</span></label>
+                        <input id="leaveIn" [(ngModel)]="selectedLeaveIn" [disabled]="isFormDisabled"
+                            placeholder="Select">
+                    </div>
+                    <div class="form-field" style="padding-left: 10px;">
+                        <label for="days">Days</label>
+                        <input id="days" type="text" pInputText [(ngModel)]="days" readonly />
+                    </div>
+                </div>
+
+                <!-- Reason Section -->
+                <div class="form-field" style="margin-top: 1rem;">
+                    <label for="reason">Reason</label>
+                    <textarea id="reason" pInputTextarea [(ngModel)]="reason"
+                        style="height: 80px; width: 100%; resize: vertical;" [disabled]="isFormDisabled"></textarea>
+                </div>
+
+                <div class="form-field" style="margin-top: 1rem;">
+                    <label for="remark">Remark</label>
+                    <textarea id="remark" pInputTextarea [(ngModel)]="remark"
+                        style="height: 80px; width: 100%; resize: vertical;"></textarea>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button pButton type="button" id="SubmitBtn" label="Approve" icon="pi pi-save"
+                        styleClass="p-button-primary" style="width: 0%;" (click)="approveLeave()"
+                        [disabled]="isSubmitting"></button>
+                    <button pButton type="button" label="Reject" id="ClearBtn" class="p-button-secondary"
+                        (click)="rejectLeave()" style="margin-left: 10px; width: 0%;"
+                        [disabled]="isSubmitting"></button>
+                </div>
+            </div>
+        </div>
+    </p-card>
+</p-dialog>

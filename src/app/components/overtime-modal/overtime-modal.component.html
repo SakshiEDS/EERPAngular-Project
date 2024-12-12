@@ -1,0 +1,58 @@
+<p-toast></p-toast>
+<p-dialog [header]="'Overtime Details'" id="OvertimeHeader"
+    [style]="{'max-width': '44%','height':'50%', 'width': '100%'}" [draggable]="false" [resizable]="false"
+    [modal]="true" [closable]="true" [(visible)]="isDialogVisible" [class.shift-dialog]="">
+    <ng-container>
+        <div class="form-column-left">
+            <div class="form-field">
+                <label>Code</label>
+                <input type="number" [(ngModel)]="sno" />
+            </div>
+            <div class="form-field">
+                <label>Overtime Name</label>
+                <input type="text" [(ngModel)]="overtime" />
+            </div>
+            <div class="form-field">
+                <label>OverTime Type</label>
+                <p-dropdown id="overtime-style" [options]="OvertimeTypes" [(ngModel)]="overtimeType"></p-dropdown>
+            </div>
+            <div class="form-field">
+                <label>Minimum OT Hours</label>
+                <input type="number" [(ngModel)]="minimumOTHours" />
+            </div>
+            <div class="form-field">
+                <label>OverTime For</label>
+                <p-dropdown id="overtime-style" [options]="OverTimeFor" [(ngModel)]="overtimeFor"></p-dropdown>
+            </div>
+
+            <div class="form-field">
+                <label>Working Hour Per Month</label>
+                <input type="number" [(ngModel)]="workingHoursPerMonth" />
+            </div>
+            <div class="form-field">
+                <label>Round Off Option</label>
+                <p-dropdown id="overtime-style" [options]="RoundOffOption" [(ngModel)]="roundOffOption"
+                    class="custom-dropdown"></p-dropdown>
+            </div>
+            <div class="form-field">
+                <label>Overtime Applicable</label>
+
+                <p-checkbox id="activeStatus" [(ngModel)]="overtimeApplicableStatus" binary="true"></p-checkbox>
+            </div>
+
+        </div>
+    </ng-container>
+
+    <p-footer
+        style="height: 26px; align-items: center; display: flex; justify-content: end; bottom: 0; position: absolute; width: 100%; padding: 5px 7px 5px 3px; background-color: #164e7f;">
+        <button pButton label="Save" icon="pi pi-save" class="p-button-primary" (click)="saveOvertime($event)"
+            style="margin-right: 5px; padding: 3px 1px; padding-right: 6px; font-size: 14px;" [disabled]="isSubmitting"
+            id="SubmitBtn">
+        </button>
+        <button pButton label="Delete" icon="pi pi-trash" class="p-button-danger"
+            style="padding: 3px 1px; font-size: 14px; padding-right: 6px;" (click)="deleteOvertime($event)"
+            [disabled]="isSubmitting" id="DeleteBtn">
+        </button>
+
+    </p-footer>
+</p-dialog>

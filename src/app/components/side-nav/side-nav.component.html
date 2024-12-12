@@ -1,17 +1,178 @@
-<div class="sidenav"[ngClass]="collapsed ? 'sidenav-collapsed' : '' ">
+<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed' : '' ">
     <div class="logo-container">
-        <button class="logo"(click)="toggleCollapse()">E</button>
+        <button class="logo" (click)="toggleCollapse()">E</button>
         <div class="logo-text" @fadeInOut *ngIf="collapsed">EERP</div>
-        <button class="btn-close"  *ngIf="collapsed" (click)="closeSidenav()">
+        <button class="btn-close" *ngIf="collapsed" (click)="closeSidenav()">
             <i class="fal fa-times close-icon"></i>
         </button>
     </div>
     <ul class="sidenav-nav">
-        <li class="sidenav-nav-item" *ngFor="let data of navData">
-            <a class="sidenav-nav-link" [routerLink]="[data.routeLink]"  routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <i class="sidenav-link-icon" [class]="data.icon"></i>
-                <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">{{data.label}}</span>
+        <!-- Existing navigation links -->
+        <li class="sidenav-nav-item" *ngFor="let data of filteredNavbarData">
+            <a class="sidenav-nav-link" [routerLink]="[data.routeLink]" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }">
+                <div class="sidenav-link-content">
+                    <i class="sidenav-link-icon" [class]="data.icon"></i>
+                    <span class="sidenav-link-text" @fadeInOut>{{ data.label }}</span>
+                </div>
             </a>
         </li>
+        <!-- Dropdown button -->
+        <li class="sidenav-nav-item dropdown">
+            <button class="sidenav-dropdown-btn sidenav-nav-link" (click)="toggleDropdown()">
+                <div class="sidenav-link-content extra-hover" style="position: relative; padding-right: 6px;">
+                    <i class="sidenav-link-icon fas fa-briefcase" style="font-size: 23px;
+            display: flex;
+            color: #ffffff;
+            justify-content: center;"></i>
+                    <span class="sidenav-link-text" style="    color: white;
+            font-size: 12px;
+            justify-content: center;
+            display: flex;">Employee</span>
+                </div>
+            </button>
+            <!-- Dropdown menu -->
+            <ul class="sidenav-dropdown-menu" *ngIf="isDropdownOpen">
+
+                <li class="hardcoded-option" style="position: relative; padding: 0px;"
+                    *ngIf="permissionServiceInstance.hasPermission('EmployeMasterComponent')">
+                    <a class="sidenav-dropdown-link" style="padding: 10px 8px;">
+                        Employee Section
+                    </a>
+                    <ul class="sidenav-detailed-menu">
+                        <li style="padding: 0px;"
+                            *ngIf="permissionServiceInstance.hasPermission('EmployeMasterComponent')">
+                            <a class="sidenav-detail-link" routerLink="employe-master">Employee Master</a>
+                        </li>
+                        <li style="padding: 0px;"
+                            *ngIf="permissionServiceInstance.hasPermission('EmployeMasterComponent')">
+                            <a class="sidenav-detail-link" routerLink="empResignation">Emp Resignation</a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li class="hardcoded-option" style="position: relative; padding: 0px;"
+                    *ngIf="permissionServiceInstance.hasPermission('AttendanceTableComponent')">
+                    <a class="sidenav-dropdown-link" style="padding: 10px 8px;">
+                        Attendance
+                    </a>
+                    <ul class="sidenav-detailed-menu">
+                        <li style="padding: 0px;"
+                            *ngIf="permissionServiceInstance.hasPermission('AttendanceTableComponent')">
+                            <a class="sidenav-detail-link" routerLink="attendance-table">Dashboard</a>
+                        </li>
+                        <li style="padding: 0px;"
+                            *ngIf="permissionServiceInstance.hasPermission('AttendanceCorrectionComponent')">
+
+                            <a class="sidenav-detail-link" (click)="attCorr.showDialog()">Att. Correction</a>
+                            <app-attendance-correction #attCorr></app-attendance-correction>
+                        </li>
+                    </ul>
+                </li>
+
+
+
+
+
+                <ng-container *ngFor="let option of dropdownOptions">
+                    <!-- Check for permission before showing the option -->
+                    <li *ngIf="permissionServiceInstance.hasPermission(option.requiredPermission)"
+                        style="padding: 0px; position: relative;">
+                        <a class="sidenav-dropdown-link" [routerLink]="[option.routeLink]" routerLinkActive="active"
+                            [routerLinkActiveOptions]="{ exact: true }" style="padding: 10px 8px;">
+                            <i class="sidenav-link-icon" [class]="option.icon"></i>
+                            {{ option.label }}
+                        </a>
+
+                        <!-- Detailed nested menu -->
+                        <ul class="sidenav-detailed-menu" *ngIf="option.details"
+                            style="display: none; position: absolute; left: 100%; top: 0;">
+                            <ng-container *ngFor="let detail of option.details">
+                                <!-- Check for permission before showing the detail -->
+                                <li *ngIf="permissionServiceInstance.hasPermission(detail.requiredPermission)"
+                                    style="padding: 0px;">
+                                    <a class="sidenav-detail-link" [routerLink]="[detail.routeLink]"
+                                        routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                                        {{ detail.label }}
+                                    </a>
+                                </li>
+                            </ng-container>
+                        </ul>
+                    </li>
+                </ng-container>
+
+
+                <!-- Hardcoded dropdown 2 -->
+                <li *ngIf="permissionServiceInstance.hasPermission('LeaveMasterComponent')" class="hardcoded-option"
+                    style="position: relative; padding:0px;">
+                    <a class="sidenav-dropdown-link" style="padding: 10px 8px;">
+                        Leave Section
+                    </a>
+                    <ul class="sidenav-detailed-menu">
+                        <li style="padding: 0px;"
+                            *ngIf="permissionServiceInstance.hasPermission('LeaveMasterComponent')">
+                            <a class="sidenav-detail-link" routerLink="leave-master">Leave Master</a>
+                        </li>
+                        <li style="padding: 0px;"
+                            *ngIf="permissionServiceInstance.hasPermission('LeaveApplicationComponent')">
+                            <a class="sidenav-detail-link" routerLink="leave-application">Leave Application</a>
+                        </li>
+                        <li style="padding: 0px;"
+                            *ngIf="permissionServiceInstance.hasPermission('LeaveAdjustmentComponent')">
+                            <a class="sidenav-detail-link" routerLink="leave-adjustment">Leave Adjustement</a>
+                        </li>
+                        <li style="padding: 0px;"
+                            *ngIf="permissionServiceInstance.hasPermission('LeaveHrapplyComponent')">
+                            <a class="sidenav-detail-link" routerLink="leave-hrapply">Leave HR</a>
+                        </li>
+                        <li style="padding: 0px;"
+                            *ngIf="permissionServiceInstance.hasPermission('LeaveTableComponent')">
+                            <a class="sidenav-detail-link" routerLink="leave-table">Leave Approval</a>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
     </ul>
+
+
+
+</div>
+
+<!-- Navbar Section (Placed at the top or inside the sidebar) -->
+<div class="navbar">
+    <!-- Logo Section -->
+    <div class="navbar-left">
+
+        <span class="user-id">[076617] - xyzkumar (01/04/2024 - 31/03/2025)</span>
+    </div>
+
+    <!-- Date Section -->
+    <div class="navbar-middle">
+        <!-- <button class="calendar-btn">
+        <i class="fas fa-calendar-alt"></i>
+      </button> -->
+
+        <!-- <button class="subscription-alert">
+        SUBSCRIPTION EXPIRING CLICK HERE TO RENEW
+      </button> -->
+    </div>
+
+    <!-- Notification & Profile Section -->
+    <div class="navbar-right">
+        <div class="user-actions">
+            <button class="notifications">
+                <i class="fas fa-bell"></i>
+            </button>
+            <button class="settings">
+                <i class="fas fa-cogs"></i>
+            </button>
+            <button class="profile">
+                <i class="fas fa-user"></i>
+            </button>
+
+            <app-sidebar-color #toggle></app-sidebar-color>
+        </div>
+    </div>
 </div>

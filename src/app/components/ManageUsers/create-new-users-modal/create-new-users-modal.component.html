@@ -1,0 +1,208 @@
+<div>
+    <p-toast></p-toast>
+    <div style="padding: 5px 0;">
+        <p-button *ngIf="canAddNewUser" (click)="showDialog()" label="Create New User" icon="pi pi-save" iconPos="left"
+            styleClass="p-button-secondary custom-button">
+        </p-button>
+    </div>
+
+
+
+    <p-dialog header="Manage User" [(visible)]="visible" [modal]="true" [style]="{ width: '50%' }"
+        [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [draggable]="true" [resizable]="false">
+        <div class="employee-master-container">
+            <div class="section-container">
+                <div class="form-grid">
+                    <div class="form-column-left">
+
+                        <!-- Name Fields -->
+                        <div class="form-field">
+                            <label>Employee Name <span class="required">*</span></label>
+                            <!-- <p-dropdown [options]="employeeNames" [(ngModel)]="selectedEmployeeName" optionLabel="name"
+                                optionValue="code" placeholder="Select Employee" [ngModelOptions]="{standalone: true}"
+                                (ngModelChange)="onEmployeeNameChange()">
+                            </p-dropdown> -->
+                            <select id="ddlstyle" [(ngModel)]="selectedEmployeeName"
+                                [ngModelOptions]="{ standalone: true }" (ngModelChange)="onEmployeeNameChange()">
+                                <option value="" disabled>Select Employee</option>
+                                <option *ngFor="let employee of employeeNames" [value]="employee.code">
+                                    {{ employee.name }}
+                                </option>
+                            </select>
+
+                        </div>
+
+
+                        <!-- Gender Dropdown -->
+                        <div class="form-field">
+                            <label>Gender <span class="required">*</span></label>
+                            <!-- <p-dropdown [options]="genderOptions" [(ngModel)]="selectedGender" optionLabel="label"
+                                optionValue="value" placeholder="Select Gender"
+                                [ngModelOptions]="{standalone: true}"></p-dropdown> -->
+                            <select id="ddlstyle" [(ngModel)]="selectedGender" [ngModelOptions]="{ standalone: true }">
+                                <option value="" disabled selected>Select Gender</option>
+                                <option *ngFor="let gender of genderOptions" [value]="gender.value">
+                                    {{ gender.label }}
+                                </option>
+                            </select>
+
+                        </div>
+
+
+
+                        <!-- Password Fields -->
+                        <div class="form-field">
+                            <label>Password <span class="required">*</span></label>
+                            <input type="password" [(ngModel)]="password" />
+
+
+                        </div>
+
+                        <div class="form-field">
+                            <label>Confirm Password <span class="required">*</span></label>
+                            <input type="password" [(ngModel)]="confirmPassword" />
+                        </div>
+
+                        <!-- Email and Mobile -->
+                        <div class="form-field">
+                            <label>Email <span class="required">*</span></label>
+                            <input type="email" [(ngModel)]="emailId" readonly />
+                        </div>
+
+                        <div class="form-field">
+                            <label>Mobile <span class="required">*</span></label>
+                            <input type="number" [(ngModel)]="mobileNumber" readonly />
+                        </div>
+
+                        <!-- OTP Required -->
+                        <div class="form-field">
+                            <label>OTP Required to Login</label>
+                            <!-- <p-checkbox [(ngModel)]="otpRequired" binary="true"></p-checkbox> -->
+                            <input type="checkbox" [(ngModel)]="otpRequired" />
+                        </div>
+
+                        <!-- Time Restriction -->
+                        <div class="form-field">
+                            <label>Time Restriction <span class="required">*</span></label>
+                            <!-- <p-checkbox [(ngModel)]="timeRestriction" binary="true"></p-checkbox> -->
+                            <input type="checkbox" [(ngModel)]="timeRestriction" />
+                        </div>
+
+                        <!-- <div style="display: flex; justify-content: space-between;">
+                            <label>From Time <span class="required">*</span></label>
+                            <input type="time" [(ngModel)]="fromTime" />
+
+
+                            <label>Upto Time <span class="required">*</span></label>
+                            <input type="time" [(ngModel)]="toTime" />
+                        </div> -->
+
+                        <div style="display: flex; justify-content: space-between;">
+                            <label>From Time <span class="required">*</span></label>
+                            <input type="time" [(ngModel)]="fromTime" />
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between;">
+                            <label>Upto Time <span class="required">*</span></label>
+                            <input type="time" [(ngModel)]="toTime" />
+                        </div>
+
+                        <!-- Allowed Weekdays -->
+                        <div class="form-field">
+                            <label>Allowed Weekdays</label>
+                            <input type="text" [(ngModel)]="selectedWeekdaysText" readonly
+                                (click)="showWeekdaysDialog()" placeholder="Select Weekdays" />
+
+
+                        </div>
+
+                        <!-- Reporting To and Allowed Company -->
+                        <div class="form-field">
+                            <label>Reporting To <span class="required">*</span></label>
+                            <!-- <p-dropdown [options]="employeeNames" [(ngModel)]="selectedReportingTo" optionLabel="name"
+                                optionValue="code" placeholder="Select Employee" [ngModelOptions]="{standalone: true}">
+                            </p-dropdown> -->
+
+                            <select id="ddlstyle" [(ngModel)]="selectedReportingTo"
+                                [ngModelOptions]="{ standalone: true }">
+                                <option value="" disabled selected>Select Employee</option>
+                                <option *ngFor="let employee of employeeNames" [value]="employee.code">
+                                    {{ employee.name }}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-field">
+                            <label>Allowed Company <span class="required">*</span></label>
+                            <!-- <p-dropdown [options]="organizationList" [(ngModel)]="selectedAllowedCompany"
+                                optionLabel="organizationName" optionValue="organizationCode"
+                                placeholder="Select Company" [ngModelOptions]="{standalone: true}">
+                            </p-dropdown> -->
+
+
+                            <select [(ngModel)]="selectedAllowedCompany" [ngModelOptions]="{standalone: true}">
+                                <option value="" disabled selected>Select Company</option>
+                                <option *ngFor="let organization of organizationList"
+                                    [value]="organization.organizationCode">
+                                    {{ organization.organizationName }}
+                                </option>
+                            </select>
+
+                        </div>
+
+                        <div class="form-field">
+                            <label>Permission Applicable to the User <span class="required">*</span></label>
+
+                            <!-- Dropdown to Show Role Permissions -->
+                            <p-dropdown [options]="rolePermissionDialog.rolePermissions"
+                                [(ngModel)]="rolePermissionDialog.selectedRolePermission" optionLabel="name"
+                                optionValue="id" placeholder="Select Role Permission">
+                            </p-dropdown>
+
+                            <!-- Edit Button to Open Role Permission Dialog -->
+                            <button pButton type="button" icon="pi pi-pencil" class="p-button-text p-button-sm"
+                                id="StyleBtn"
+                                (click)="rolePermissionDialog.openDialog(rolePermissionDialog.selectedRolePermission)">
+                            </button>
+                            <button pButton type="button" icon="pi pi-times" class="p-button-text p-button-sm"
+                                id="ClearBtn" (click)="rolePermissionDialog.clearRolePermission()">
+                            </button>
+                        </div>
+
+                        <!-- Include Role Permission Dialog Component -->
+                        <app-role-permission #rolePermissionDialog></app-role-permission>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <p-button type="submit" id="SubmitBtn" label="Save" icon="pi pi-save" styleClass="p-button-primary"
+                [style]="{ padding: '3px' }" (click)="saveUserData($event)" [disabled]="isSubmitting"></p-button>
+            <p-button (click)="hideDialog()" id="ExitBtn" label="Exit" icon="pi pi-times"
+                styleClass="p-button-secondary" [style]="{ padding: '3px' }"></p-button>
+        </div>
+    </p-dialog>
+
+
+    <!-- Weekdays Modal -->
+    <p-dialog header="Select Weekdays" [(visible)]="weekdaysDialogVisible" [modal]="true" [style]="{ width: '30%' }">
+
+        <!-- Select All Checkbox -->
+        <div class="form-field">
+            <p-checkbox label="Select All" [(ngModel)]="selectAll" (onChange)="toggleSelectAll()">
+            </p-checkbox>
+        </div>
+
+        <!-- Weekdays checkboxes -->
+        <div class="form-field" *ngFor="let day of weekdaysList">
+            <p-checkbox [label]="day.label" [(ngModel)]="day.selected" (onChange)="toggleWeekday(day)" [binary]="true">
+            </p-checkbox>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="action-buttons">
+            <p-button label="Close" (click)="weekdaysDialogVisible = false" styleClass="p-button-secondary"></p-button>
+        </div>
+    </p-dialog>
+</div>

@@ -1,0 +1,179 @@
+.form-container {
+    max-width: 600px;
+    margin: 65px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0px 8px rgb(201 47 47 / 30%);
+}
+
+.heading {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+}
+
+.field label {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+input[pInputText],
+p-dropdown,
+p-password {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+}
+
+::ng-deep .p-dropdown li {
+    padding-top: 4px;
+    padding-bottom: 3px;
+    padding-left: 4px;
+
+}
+
+.flex-contact {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.dropdown {
+    flex: 1;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.submit-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+
+}
+
+.btn-submit,
+.btn-verify,
+.btn-resend {
+    width: 100%;
+    max-width: 200px;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.otp-section {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.otp-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+#form-style {
+    height: 30px;
+}
+
+
+#form-drop-down {
+    padding: 0px 4px;
+}
+
+::ng-deep #form-drop-down .p-dropdown {
+    padding: 3px 0px;
+    padding-left: 7px;
+}
+
+::ng-deep #form-drop-down input {
+    height: 30px;
+}
+
+#pswrd-drop {
+    padding: 6px 0px;
+}
+
+::ng-deep #p-dropdown {
+    width: 100%;
+}
+
+::ng-deep #pswrd-drop .p-password {
+    width: 100%;
+}
+
+
+::ng-deep #pswrd-drop .p-dropdown {
+    width: 100%;
+}
+
+::ng-deep #pswrd-drop input {
+    position: relative;
+    height: 30px;
+    padding: 1px 6px;
+    width: 100%;
+}
+
+::ng-deep #pswrd-drop eyeicon {
+    position: absolute;
+    right: 9px;
+    top: 8px;
+}
+
+::ng-deep #pswrd-drop eyeslashicon {
+    position: absolute;
+    right: 9px;
+    top: 8px;
+}
+
+
+#p-dropdown {
+    padding: 0px;
+
+}
+
+::ng-deep #p-dropdown span {
+    padding: 8px 3px;
+    font-size: 14px;
+}
+
+::ng-deep #p-dropdown input {
+    padding: 1px 6px;
+}
+
+
+#submit-Btn button {
+    background-color: var(--ModalSubmitBtn-background-color);
+    color: var(--ModalSubmitBtn-color);
+    font-weight: 200;
+    font-size: 12px;
+    padding: 3px 11px;
+    border: none;
+}
+
+::ng-deep #submit-Btn .p-button-icon {
+    margin-right: 5px;
+    font-size: 12px;
+}

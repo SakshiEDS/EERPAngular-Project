@@ -1,6 +1,11 @@
 <!-- <button type="button" pButton label="PrimeNG"></button> -->
-<app-side-nav (onToggleSideNav)="onToggleSideNav($event)"></app-side-nav>
+
+<ng-container *ngIf="!isExcludedPage()">
+    <app-side-nav (onToggleSideNav)="onToggleSideNav($event)"></app-side-nav>
+
+</ng-container>
 <app-body [collapsed]="isSideNavCollapsed" [screenWidth]="screenWidth"></app-body>
-<!-- <app-sidebar></app-sidebar> -->
-<!-- <app-employe-detail-modal></app-employe-detail-modal>
-<app-login></app-login> -->
+<app-lateandout></app-lateandout>
+
+<!-- Always render the routed component -->
+<router-outlet></router-outlet>

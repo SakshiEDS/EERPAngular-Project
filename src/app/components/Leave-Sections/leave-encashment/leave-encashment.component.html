@@ -1,0 +1,105 @@
+<p-card>
+    <div class="p-fluid p-formgrid" style="justify-content: center; display: flex;">
+        <div style="width: 80%; position: absolute; top: 10%;">
+            <div style="border: 1px solid #d6d6d6;">
+                <div class="form-grid" style="line-height: 30px;
+                border-top: 1px solid #d6d6d6;
+                margin-top: 15px;
+                border-bottom: 1px solid #d6d6d6;">
+                    <div>
+                        <div class="form-field">
+                            <label for="voucherDate">Voucher Date</label>
+                            <input id="voucherDate" type="date" [(ngModel)]="voucherDate" />
+                        </div>
+                        <div class="form-field">
+                            <label for="employee">Employee <span class="required">*</span></label>
+                            <p-dropdown id="employee" [options]="employees" [(ngModel)]="selectedEmployee"
+                                placeholder="Select"></p-dropdown>
+                        </div>
+                        <div class="form-field">
+                            <label for="voucherNo">Voucher No</label>
+                            <input id="voucherNo" type="text" pInputText [(ngModel)]="voucherNo" />
+                        </div>
+                        <div class="form-field">
+                            <label for="joiningDate">Joining Date</label>
+                            <input id="joiningDate" type="date" />
+                        </div>
+                        <div class="form-field">
+                            <label for="confirmationDate">Confirmation Date <span class="required">*</span></label>
+                            <input id="confirmationDate" type="date" />
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            
+                           
+                            <div class="form-field">
+                                <label for="resumeDate">Resume Date</label>
+                                <input id="resumeDate" type="text" pInputText />
+                            </div>
+
+
+                        </div>
+
+                        <div>
+                            <div class="form-field">
+                                <label for="joiningDate">Branch</label>
+                                <input id="resumeDate" type="text" pInputText />
+                            </div>
+                            <div class="form-field">
+                                <label for="confirmationDate">Department <span class="required">*</span></label>
+                                <input id="resumeDate" type="text" pInputText />
+                            </div>
+                            <div class="form-field">
+                                <label for="resumeDate">Designation</label>
+                                <input id="resumeDate" type="text" pInputText />
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-grid" style="    line-height: 30px;
+                border-top: 1px solid #d6d6d6;
+                margin-top: 15px;
+                border-bottom: 1px solid #d6d6d6;">
+                    <div>
+                        <div class="form-field">
+                            <label for="leaveCode">Leave Code <span class="required">*</span></label>
+                            <p-dropdown id="leaveCode" [options]="leaveCodes" [(ngModel)]="selectedLeaveCode"
+                                placeholder="Select"></p-dropdown>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="form-field">
+                            <label for="days">Days</label>
+                            <input id="days" type="text" pInputText />
+                        </div>
+                        <div class="form-field">
+                            <label for="rate">Rate <span class="required">*</span></label>
+                            <input id="rate" type="text" pInputText />
+                        </div>
+                        <div class="form-field">
+                            <label for="amount">Amount</label>
+                            <input id="amount" type="text" pInputText />
+                        </div>
+                    </div>
+                </div>
+
+                <div style="padding: 1rem;">
+                    <div class="form-field" style="margin-top: 10px;">
+                        <label for="remark">Remark</label>
+                        <textarea id="remark" pInputTextarea [(ngModel)]="remark"
+                            style="height: 80px; width: 87%; resize: vertical;"></textarea>
+                    </div>
+                    <div class="form-field" style="margin-top: 10px;">
+                        <label for="remarkFinance">Remark by Finance</label>
+                        <textarea id="remarkFinance" pInputTextarea [(ngModel)]="remarkFinance"
+                            style="height: 80px; width: 87%; resize: vertical;"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</p-card>

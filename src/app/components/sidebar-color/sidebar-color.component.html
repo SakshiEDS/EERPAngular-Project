@@ -1,0 +1,143 @@
+<div class="card flex flex-wrap justify-content-center gap-2">
+    <!-- Sidebar -->
+    <p-sidebar [(visible)]="sidebarVisible2" position="right">
+        <h3>Right Sidebar</h3>
+
+        <div id="main">
+            <!-- First Row: Dynamic Colors from Sidebar -->
+            <div style="margin-top: 20px;">SideBar</div>
+            <div class="color-scheme-cards row" style="display: flex;flex-direction: row;">
+                <div style="width: 0px; border-radius: 64%;" *ngFor="let colorScheme of colorSchemes" class="color-card"
+                    [ngStyle]="{ 
+               'background-color': colorScheme.colors['--main-background-color'], 
+               'color': colorScheme.colors['--main-color'], 
+               'border': '1px solid ' + colorScheme.colors['--navbar-background-color'] 
+             }" (click)="changeColorScheme(colorScheme)">
+                    <!-- {{ colorScheme.name }} -->
+                </div>
+                <button pButton type="button" id="ResetBtn" label="Reset" (click)="resetToDefault()"></button>
+
+            </div>
+
+            <div style="margin-top: 20px;">Top Navbar</div>
+            <div class="color-scheme-cards row" style="display: flex;flex-direction: row;">
+                <div style="width: 0px; border-radius: 64%;" *ngFor="let TopNavbarColors of TopNavbarColors"
+                    class="color-card" [ngStyle]="{ 
+               'background-color': TopNavbarColors.colors['--navbar-background-color'], 
+               'color': TopNavbarColors.colors['--navbar-color'], 
+               'border': '1px solid ' + TopNavbarColors.colors['--navbar-background-color'] 
+             }" (click)="ChangeTopNavColor(TopNavbarColors)">
+
+                </div>
+                <button pButton type="button" id="ResetBtn" label="Reset" (click)="TopNavToDefault()"></button>
+            </div>
+
+
+
+            <div style="margin-top: 20px;">Section Title Navbar</div>
+            <div class="color-scheme-cards row" style="display: flex;flex-direction: row;">
+                <div style="width: 0px; border-radius: 64%;" *ngFor="let SectionTitleNavs of SectionTitleNavs"
+                    class="color-card" [ngStyle]="{ 
+               'background-color': SectionTitleNavs.colors['--SectionTitleNav-background-color'], 
+               'color': SectionTitleNavs.colors['--SectionTitleNav-color'], 
+               'border': '1px solid ' + SectionTitleNavs.colors['--SectionTitleNav-background-color'] 
+             }" (click)="SectionTitleNav(SectionTitleNavs)">
+                    <!-- {{ colorScheme.name }} -->
+                </div>
+                <button pButton type="button" id="ResetBtn" class="p-button-danger" label="Reset"
+                    (click)="resetSectionTitleNavToDefault()"></button>
+            </div>
+
+
+            <div style="margin-top: 20px;">Table Header</div>
+            <div class="color-scheme-cards row" style="display: flex;flex-direction: row;">
+                <div style="width: 0px; border-radius: 64%;" *ngFor="let TableHeaderColors of TableHeaderColors"
+                    class="color-card" [ngStyle]="{ 
+               'background-color': TableHeaderColors.colors['--TableTop-background-color'], 
+               'color': TableHeaderColors.colors['--TableTop-color'], 
+               'border': '1px solid ' + TableHeaderColors.colors['--TableTop-background-color'] 
+             }" (click)="SectionTitleNav(TableHeaderColors)">
+                </div>
+                <button pButton type="button" id="ResetBtn" class="p-button-danger" label="Reset"
+                    (click)="resetTableHeaderToDefault()"></button>
+            </div>
+
+
+            <div style="margin-top: 20px;">Modal Headers</div>
+            <div class="color-scheme-cards row" style="display: flex;flex-direction: row;">
+                <div style="width: 0px; border-radius: 64%;" *ngFor="let ModalHeaders of ModalHeaders"
+                    class="color-card" [ngStyle]="{ 
+               'background-color': ModalHeaders.colors['--ModalHeaders-background-color'], 
+               'color': ModalHeaders.colors['--ModalHeaders-color'], 
+               'border': '1px solid ' + ModalHeaders.colors['--ModalHeaders-background-color'] 
+             }" (click)="ModalHeaderColor(ModalHeaders)">
+                    <!-- {{ colorScheme.name }} -->
+                </div>
+                <button pButton type="button" id="ResetBtn" class="p-button-danger" label="Reset"
+                    (click)="resetModalHeaderToDefault()"> </button>
+            </div>
+
+            <div style="margin-top: 20px;">Submit Buttons</div>
+            <div class="color-scheme-cards row" style="display: flex;flex-direction: row;">
+                <div style="width: 0px; border-radius: 64%;" *ngFor="let SubmitBtns of SubmitBtns" class="color-card"
+                    [ngStyle]="{ 
+               'background-color': SubmitBtns.colors['--ModalSubmitBtn-background-color'], 
+               'color': SubmitBtns.colors['--ModalSubmitBtn-color'], 
+               'border': '1px solid ' + SubmitBtns.colors['--ModalSubmitBtn-border-color'] 
+             }" (click)="SubmitBtnColor(SubmitBtns)">
+                </div>
+                <button pButton type="button" id="ResetBtn" class="p-button-danger" label="Reset"
+                    (click)="resetSubmitBtnToDefault()"> </button>
+            </div>
+
+
+            <div style="margin-top: 20px;">Exit/Clear Buttons</div>
+            <div class="color-scheme-cards row" style="display: flex;flex-direction: row;">
+                <div style="width: 0px; border-radius: 64%;" *ngFor="let ExitBtns of ExitBtns" class="color-card"
+                    [ngStyle]="{ 
+               'background-color': ExitBtns.colors['--ModalExitBtn-background-color'], 
+               'color': ExitBtns.colors['--ModalExitBtn-color'], 
+               'border': '1px solid ' + ExitBtns.colors['--ModalExitBtn-border-color'] 
+             }" (click)="ExitBtnColor(ExitBtns)">
+                </div>
+                <button pButton type="button" id="ResetBtn" class="p-button-danger" label="Reset"
+                    (click)="resetExitBtnToDefault()"> </button>
+            </div>
+
+
+            <div style="margin-top: 20px;">Create New Buttons</div>
+            <div class="color-scheme-cards row" style="display: flex;flex-direction: row;">
+                <div style="width: 0px; border-radius: 64%;" *ngFor="let CreateBtns of CreateBtns" class="color-card"
+                    [ngStyle]="{ 
+               'background-color': CreateBtns.colors['--CreateBtn-background-color'], 
+               'color': CreateBtns.colors['--CreateBtn-color'], 
+               'border': '1px solid ' + CreateBtns.colors['--CreateBtn-border-color'] 
+             }" (click)="ModalCreateBtnColor(CreateBtns)">
+                </div>
+                <button pButton type="button" id="ResetBtn" class="p-button-danger" label="Reset"
+                    (click)="resetCreateBtnToDefault()"> </button>
+            </div>
+
+
+            <!-- <div style="margin-top: 20px;">Table Submit Buttons</div>
+        <div class="color-scheme-cards row" style="display: flex;flex-direction: row;">
+          <div style="width: 0px; border-radius: 64%;" *ngFor="let TableSubmitBtns of TableSubmitBtns" class="color-card"
+            [ngStyle]="{ 
+               'background-color': TableSubmitBtns.colors['--TableSubmitBtn-background-color'], 
+               'color': TableSubmitBtns.colors['--TableSubmitBtn-color'], 
+               'border': '1px solid ' + TableSubmitBtns.colors['--TableSubmitBtn-border-color'] 
+             }" (click)="TableSubmitBtnColor(TableSubmitBtns)">
+          </div>
+          <button pButton type="button" id="ResetBtn" class="p-button-danger" label="Reset"
+            (click)="resetTableSubmitBtnToDefault()"> </button>
+        </div> -->
+
+
+        </div>
+    </p-sidebar>
+
+
+
+    <!-- Button to Open Sidebar -->
+    <p-button type="button" class="mr-2" (onClick)="toggleSidebar('right')" icon="fa fa-bars" id="SideBar-btn" />
+</div>

@@ -1,8 +1,98 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+// styles.scss (or main SCSS file)
+:root {
+
+    --main-background-color: #164e7f; // Default background color
+    --main-color: #ffff;
+    --main-border-color: white;
+    --default-color: white;
+
+    // sidenav
+    --sidenavHover-background-color: #a4afc4;
+    --sidenavHover-color: #000;
+    --SideNavDropDownHoverLink-background-color: #000;
+
+    --sidenavActive-background-color: #a4afc4;
+    --sidenavActive-color: #000;
+
+    //main  navbar
+    --navbar-background-color: #18558a;
+    --navbar-color: white;
+
+    // Section title nav 
+    --SectionTitleNav-background-color: #0f4371;
+    --SectionTitleNav-color: white;
+
+    //Search Attendance-table
+    --SearchBox-background-color: #999;
+    --SearchBox-color: #999;
+
+    // SearchBox clear Btn 
+    --SearchBoxClearBtn-background-color: #999;
+    --SearchBoxClearBtn-color: #fff;
+
+    // MODAL UNIVERSAL-CSS
+
+    // Universal modal border css                                       --> Done
+    --ModalHeaders-background-color: #164e7f;
+    --ModalHeaders-color: white;
+
+    // modal top cross button color
+    --ModalHeaderCrossBtn-background-color: #164e7f;
+    --ModalHeaderCrossBtn-color: white;
+
+    // Modal Input border 
+    --ModalInputBorder-border-color: grey;
+
+    // modal submit button                                          --> Done
+    --ModalSubmitBtn-background-color: #164e7f;
+    --ModalSubmitBtn-color: #ffff;
+    --ModalSubmitBtn-border-color: #ffff;
+
+    // modal exit buttons                                            --> Done
+    --ModalExitBtn-background-color: grey;
+    --ModalExitBtn-color: #ffff;
+    --ModalExitBtn-border-color: #ffff;
+
+    // modal delete buttons 
+    --ModalDeleteBtn-background-color: red;
+    --ModalDeleteBtn-color: white;
+
+    // modal update btn                                
+    --ModalUpdateBtn-background-color: #164e7f;
+    --ModalUpdateBtn-color: #ffff;
+    --ModalUpdateBtn-border-color: #ffff;
+
+    // Tables                                               --> Done
+    --TableTop-background-color: #164e7f;
+    --TableTop-color: white; //Dm
+
+    // Table Edit/Delete Btns /color
+    --TableEditBtn-color: grey;
+    --TableDeleteBtn-color: red;
+
+    // Table Submit Btn                                   --> Done
+    --TableSubmitBtn-background-color: green;
+    --TableSubmitBtn-color: #ffff;
+
+    // Create Buttons                                      --> Done
+    --CreateBtn-background-color: #164e7f;
+    --CreateBtn-color: white;
+    --CreateBtn-border-color: #fff;
+
+    // Bod.
+    --body-margin-left: 3rem;
+    --body-height: 100vh;
+    // --body-padding: 0px 30px;
+    --body-padding-left: 1.3%;
+    --body-padding-right: .3%;
 }
 
 body {
@@ -26,6 +116,6 @@ body {
     }
 
     .card-body {
-        padding: 1rem 1.5rem; 
+        padding: 1rem 1.5rem;
     }
 }
